@@ -4,7 +4,7 @@ import Navbar from './components/NavBar/Navbar'
 
 function App() {
   return (
-    <div className="">
+    <div className=" ">
       <Navbar />
       <CarouselFadeExample />
       <Categorias />
