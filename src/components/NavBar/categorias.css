@@ -1,0 +1,16 @@
+.cont_edit{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+
+}
+.icons_cartegory{
+  font-size: 3rem;
+  background-color: aqua;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+p{
+  font-size: 10pt;
+}
