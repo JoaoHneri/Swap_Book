@@ -1,14 +1,16 @@
-import CarouselFadeExample from './components/Carousel'
-import Categorias from './components/Categorias.js'
-import Navbar from './components/NavBar/Navbar'
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import Home from "./Routes/Home";
+
+import BookDetails from "./Routes/BooksDetails";
 
 function App() {
   return (
-    <div className=" ">
-      <Navbar />
-      <CarouselFadeExample />
-      <Categorias />
-    </div>
+    <Router>
+    <Routes>
+      <Route exact path="/" Component={Home}/>
+      <Route exact path="/details" Component={BookDetails}/>  
+    </Routes>
+  </Router>
   )
 }
 
