@@ -38,7 +38,7 @@ const BookDetails = () => {
           <div className="w-1/2 pl-6">
             <h1 className="text-3xl font-bold mb-4">The Book Title</h1>
             <h2 className="text-xl font-medium mb-4">Author Name</h2>
-            <p className="text-gray-700 mb-4">
+            <p className="text-gray-1000 mb-4">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, quam vel
               lacinia dapibus, nibh velit hendrerit nisl, vel aliquet sapien sapien ac sapien.
               Aliquam fermentum, odio vel pulvinar facilisis, velit justo maximus lectus, ut
