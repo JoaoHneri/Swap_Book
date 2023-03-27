@@ -2,7 +2,7 @@ import React from 'react';
 
 const BookContainer = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-200 my-10" >
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-200 my-10 mb-10" >
       <div className="max-w-6xl bg-white p-5 rounded-lg shadow-lg">
         <div className="flex flex-col sm:flex-row">
           <div className="sm:w-1/3">
