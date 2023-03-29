@@ -1,54 +1,37 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Logo from "../img/logo.png";
-import styles from "./Navbar2.module.css";
+import {FaUserCircle} from 'react-icons/fa'
+import {AiOutlineShoppingCart} from 'react-icons/ai'
+import styles from './Navbar2.module.css'
+
 
 function Navbar2() {
   return (
     <>
-    <Navbar expand="lg" bg="dark" variant="dark">
-      <Container fluid>
-        <Navbar.Brand href="#"><img  className={`${styles.logo}`} src={Logo}></img></Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
-            navbarScroll
-          >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
-            <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link href="#" disabled>
-              Link
-            </Nav.Link>
-          </Nav>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-secondary">Search</Button>
-          </Form>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <header className="bg-white shadow-sm">
+      <div className="container mx-auto px-4 py-6 flex justify-between items-center">
+        <div>
+          <h1 className="text-lg font-bold text-gray-800">Swap Book</h1>
+        </div>
+        <div className="flex items-center">
+          <input
+            type="text"
+            placeholder="Pesquisar Livro"
+            className="border border-gray-500 rounded-full py-2 px-4 w-full lg:w-64"
+          />
+          <button className="ml-2 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full">
+            Pesquisar
+          </button>
+        </div>
+        <div className='d-flex flex-wrap'>
+          <h1 className={`${styles.icons} px-2`}><FaUserCircle/></h1>
+          <h1 className={`${styles.icons} px-2`}><AiOutlineShoppingCart/></h1>
+          <button className="ml-2 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full">
+            Anunciar
+          </button>
+          
+        </div>
+      </div>
+    </header>
     </>
   )
 }
