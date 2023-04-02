@@ -9,6 +9,7 @@ import Footer from "../components/Footer/Footer.js";
 
 
 const Home = () => {
+  
   return (
     <div>
     <Navbar2 />
