@@ -1,6 +1,5 @@
 import '../Cards/cardsStyle.css'
 import { Link } from 'react-router-dom'
-import { click } from '@testing-library/user-event/dist/click'
 function Cards() {
 
   return (
@@ -70,7 +69,7 @@ function Cards() {
           <button>Add to Cart</button>
         </p>
       </div>
-      
+        
     </div>
   )
 }

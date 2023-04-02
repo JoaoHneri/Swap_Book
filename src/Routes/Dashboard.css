@@ -1,0 +1,21 @@
+.products-inputs{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 5;
+    padding: 2em;
+}
+
+.products-inputs input{
+    margin-bottom: 1em;
+    padding: 10px;
+}
+
+.input-section{
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 50px;
+    
+}

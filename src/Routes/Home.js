@@ -7,6 +7,7 @@ import Trotes from "../components/Trotes/Trotes.js";
 import Footer from "../components/Footer/Footer.js";
 
 
+
 const Home = () => {
   return (
     <div>
