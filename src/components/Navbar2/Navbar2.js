@@ -3,11 +3,10 @@ import { FaUserCircle } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import styles from "./Navbar2.module.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { userContext } from "../UseContext/UserContext";
+import { UserContext } from "../UseContext/UserContext";
 
 function Navbar2() {
-  const [userData, setUserData] = useContext(userContext)
+  const [userData, setUserData] = useContext(UserContext)
   console.log(userData.isLogged)
 
   return (

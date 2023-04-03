@@ -1,15 +1,17 @@
 import React, {createContext, useState} from "react";
 
-export const userContext = createContext()
+
+export const UserContext = createContext()
 
 export function UserProvider(props){
     const [userData , setUserData] = useState({
         isLogged: false,
-        message: "olá",
-    })
+        message: "olá",}
+        
+    )
     return (
-        <userContext.Provider value={[userData, setUserData]}>
+        <UserContext.Provider value={[userData, setUserData]}>
             {props.children}
-        </userContext.Provider>
+        </UserContext.Provider>
     )
 }

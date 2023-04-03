@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar2 from "../components/Navbar2/Navbar2";
+import Navbar2 from "../../Navbar2/Navbar2";
 import "./Dashboard.css";
 
 const Dashboard = () => {
