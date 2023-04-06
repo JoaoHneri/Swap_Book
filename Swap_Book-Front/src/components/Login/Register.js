@@ -1,7 +1,55 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from "../UseContext/UserContext";
+import api from '../../Services/Api.js';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [telefone, setTelefone] = useState("")
+  const [password, setPassword] = useState("")
+  const [latitude, setLatitude] = useState(0)
+  const [longitude, setLongitude] = useState(0)
+  const navigate = useNavigate()
+  useEffect(()=> {
+    getUserLocation()
+  }, [])
+
+  async function registerHandler(e) {
+    e.preventDefault();
+    try {
+      await api.post('user', {
+        name,
+        telefone,
+        email,
+        password,
+        latitude,
+        longitude
+      } )
+      alert("Cadastro realizado com sucesso!")
+      navigate('/login')
+     } catch(err){
+      alert("Error ao cadastrar usuario, tente novamente");
+    }
+  }
+
+
+  async function getUserLocation(){
+    navigator.geolocation.getCurrentPosition((position) => {
+      const {latitude, longitude} = position.coords
+      setLatitude(latitude)
+      setLongitude(longitude)
+      console.log(latitude,longitude)
+    }, (err)=> {
+      console.log(err)
+    }, {timeout: 10000})
+  }
+
+
+
+
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
       <div className="bg-white p-10 rounded-lg shadow-lg">
@@ -15,6 +63,8 @@ const RegisterPage = () => {
               type="text"
               id="nome"
               name="nome"
+              value={name}
+              onChange={e => setName(e.target.value)}
               className="w-full border border-gray-300 p-2 rounded-lg"
               placeholder="Seu Nome"
             />
@@ -23,6 +73,8 @@ const RegisterPage = () => {
             </label>
             <input
               type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
               id="email"
               name="email"
               className="w-full border border-gray-300 p-2 rounded-lg"
@@ -33,7 +85,9 @@ const RegisterPage = () => {
             </label>
             <input
               type="number"
+              value={telefone}
               id="telefone"
+              onChange={e => setTelefone(e.target.value)}
               name="telefone"
               className="w-full border border-gray-300 p-2 rounded-lg"
               placeholder="Seu telefone"
@@ -45,6 +99,8 @@ const RegisterPage = () => {
             </label>
             <input
               type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               id="password"
               name="password"
               className="w-full border border-gray-300 p-2 rounded-lg"
@@ -53,10 +109,10 @@ const RegisterPage = () => {
           </div>
           <div>
             <button
-              type="submit"
+              type="submit" onClick={registerHandler}
               className="w-full rounded-3xl bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 text-xl font-medium uppercase"
             >
-              Login
+              Registrar
             </button>
           </div>
         </form>

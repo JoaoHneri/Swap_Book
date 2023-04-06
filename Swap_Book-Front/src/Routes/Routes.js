@@ -12,6 +12,7 @@ import RegisterPage from "../components/Login/Register";
 import BookDetails from "../components/pages/BooksDetails/BooksDetails";
 import { useState,useContext } from "react";
 import { UserContext } from "../components/UseContext/UserContext";
+import MyAnnuncements from "../components/pages/MyAnnunciments/MyAnnuncements";
 
 const Rotas = () => {
     const [userData, setUserData] = useContext(UserContext)
@@ -19,6 +20,7 @@ const Rotas = () => {
       <Router>
         <Routes>
           <Route exact path="/" Component={Home} />
+          <Route exact path="/meus+anuncios" Component={MyAnnuncements}/>
           <Route exact path="/details" Component={BookDetails} />
           <Route
             path="/dashboard"

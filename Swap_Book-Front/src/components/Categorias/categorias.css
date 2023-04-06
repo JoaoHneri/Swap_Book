@@ -1,6 +1,5 @@
 .categories{
-  margin-top: 2em;
-  background-color: rgb(239, 239, 239);
+  background-color: aliceblue;
   padding: 1px;
 }
 
@@ -15,9 +14,11 @@
 
 }
 .icons_cartegory{
-  margin: 1px 0;
-  font-size: 3em;  
+  margin: 5px 0 5px;
+  font-size: 3em;
+  background-color: antiquewhite;
   padding: 0px 30px 15px 30px;
+  border-radius: 50%;
 }
 
 .icon{
