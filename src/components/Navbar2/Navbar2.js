@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { FaUserCircle } from "react-icons/fa";
+import {FiLogOut} from "react-icons/fi"
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import styles from "./Navbar2.module.css";
 import { Link } from "react-router-dom";
@@ -47,10 +48,15 @@ function Navbar2() {
             </button>
           </Link>
             }</div>
-            
+            <div>
+            {userData.isLogged ? <Link to="/logout">
+            <button className="ml-2 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full">
+              <FiLogOut/>
+            </button>
+          </Link> : null}
+            </div> 
+            </div>
           </div>
-        </div>
-            
       </header>
     </>
   );
