@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -7,8 +7,9 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../UseContext/UserContext";
 import { useNavigate } from "react-router-dom";
 
-function Navbar2() {
+function Navbar2({setSearchProducts}) {
   const [userData, setUserData] = useContext(UserContext);
+
   const navigate = useNavigate();
 
   async function logoutHandler(e) {
@@ -36,6 +37,8 @@ function Navbar2() {
           <div className="flex items-center">
             <input
               type="text"
+              onChange={(e) => setSearchProducts(e.target.value)}
+              
               placeholder="Pesquisar Livro"
               className="border border-gray-500 rounded-full py-2 px-4 w-full lg:w-64"
             />

@@ -11,10 +11,13 @@ import { useState, useEffect } from "react";
 
 const Home = () => {
 
-  const [latitude, setLatitude] = useState(0)
-  const [longitude, setLongitude] = useState(0)
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
   const [productsData, setProductsData] = useState([]);
   const [allBooks, setAllBooks] = useState([]);
+  const [searchProducts, setSearchProducts] = useState("");
+  // const [productsByPrice, setProductsByPrice] = useState(100);
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(()=> {
     getUserLocation()
@@ -63,11 +66,33 @@ const Home = () => {
     getProducts()
   })
 
+  useEffect(()=> {
+    getSearchProducts()
+  },[searchProducts])
+
+  function getSearchProducts(){
+    const filteredProducts = productsData.filter(product =>
+        (product.name.toLowerCase().includes(searchProducts.toLowerCase()))
+      )
+      setFilteredData(filteredProducts)
+      console.log(filteredProducts)
+  }
 
 
   return (
     <div>
-    <Navbar2 />
+    <Navbar2 setSearchProducts={setSearchProducts} />
+    <div className="d-flex">
+      {searchProducts ? 
+      filteredData ? filteredData.map(product =>(
+        <Cards key={product._id}
+         name={product.name} 
+         price={product.price} 
+         synopsis={product.synopsis}/>
+      )) : <div></div>
+      : null}
+      
+    </div>
     <CarouselFadeExample />
     <Categorias />
     <div className="text-center"><h2>LIVROS:</h2>
