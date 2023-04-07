@@ -20,7 +20,10 @@ const Rotas = () => {
       <Router>
         <Routes>
           <Route exact path="/" Component={Home} />
-          <Route exact path="/meus+anuncios" Component={MyAnnuncements}/>
+          <Route
+            path="/meus_anuncios"
+            element={userData.isLogged ? <MyAnnuncements /> : <Navigate to="/" />}
+          />
           <Route exact path="/details" Component={BookDetails} />
           <Route
             path="/dashboard"

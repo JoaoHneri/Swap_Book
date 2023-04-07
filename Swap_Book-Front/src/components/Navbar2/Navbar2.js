@@ -29,7 +29,9 @@ function Navbar2() {
       <header className="bg-white shadow-sm">
         <div className="container mx-auto px-4 py-6 flex justify-between items-center">
           <div>
-            <h1 className="text-lg font-bold text-gray-800">Swap Book</h1>
+            <Link to="/">
+              <h1 className="text-lg font-bold text-gray-800">Swap Book</h1>
+            </Link>
           </div>
           <div className="flex items-center">
             <input
@@ -72,7 +74,7 @@ function Navbar2() {
             </div>
                         <div>
               {userData.isLogged ? (
-                <Link to="/meus+anuncios">
+                <Link to="/meus_anuncios">
                   <button className="">
                     <button className="ml-2 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full">Meus Anúncios</button>
                   </button>

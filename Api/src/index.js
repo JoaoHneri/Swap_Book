@@ -2,6 +2,7 @@ const express = require('express')
 
 const mongoose = require('mongoose')
 require('dotenv').config()
+mongoose.set("strictQuery", false);
 
 const cors = require('cors')
 const router = require('./Routes/Router')

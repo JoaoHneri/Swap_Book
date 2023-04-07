@@ -31,7 +31,7 @@ const Dashboard = () => {
         auth: `${userData._id}`
       }})
       alert("produto cadastrado com sucesso!")
-      navigate('/meus+anuncios')
+      navigate('/meus_anuncios')
     }catch(err){
       alert("falha ao adicionar Livro")
     }
