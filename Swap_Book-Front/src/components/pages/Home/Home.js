@@ -5,19 +5,92 @@ import Categorias from "../../Categorias/Categorias.js";
 import Navbar2 from "../../Navbar2/Navbar2.js";
 import Trotes from "../../Trotes/Trotes.js";
 import Footer from "../../Footer/Footer.js";
-
+import api from "../../../Services/Api";
+import { useState, useEffect } from "react";
 
 
 const Home = () => {
-  
+
+  const [latitude, setLatitude] = useState(0)
+  const [longitude, setLongitude] = useState(0)
+  const [productsData, setProductsData] = useState([]);
+  const [allBooks, setAllBooks] = useState([]);
+
+  useEffect(()=> {
+    getUserLocation()
+  }, [])
+
+  async function getUserLocation(){
+    navigator.geolocation.getCurrentPosition((position) => {
+      const {latitude, longitude} = position.coords
+      setLatitude(latitude)
+      setLongitude(longitude)
+      console.log(latitude,longitude)
+    }, (err)=> {
+      console.log(err)
+    }, {timeout: 10000})
+  }
+
+  useEffect(()=> {
+    getNearProducts()
+  },[latitude, longitude])
+
+  async function getNearProducts(){
+    try{
+      const nearProducts = await api.get(`/product/cords?latitude=${latitude}&longitude=${longitude}`)
+      const {data} = nearProducts
+      const limitedItens = data.slice(0, 5);
+      setProductsData(limitedItens)
+
+    }catch(err){
+      alert("Erro ao carregar os produtos")
+    }
+  }
+
+  async function getProducts(){
+    try{
+      const Products = await api.get(`/product/`)
+      const {data} = Products
+      const allProducts = data.slice(0, 5);
+      setAllBooks(allProducts)
+
+    }catch(err){
+      alert("Erro ao carregar os produtos")
+    }
+  }
+
+  useEffect(()=> {
+    getProducts()
+  })
+
+
+
   return (
     <div>
     <Navbar2 />
     <CarouselFadeExample />
     <Categorias />
-    <Cards />
+    <div className="text-center"><h2>LIVROS:</h2>
+    <div className="d-flex">
+      {allBooks.map(product =>(
+        <Cards key={product._id}
+         name={product.name} 
+         price={product.price} 
+         synopsis={product.synopsis}/>
+      ))}
+    </div>
+    </div>
     <Trotes />
-    <Cards/>
+    <div className="text-center"><h2>VEJA OS ITENS PRÓXIMOS DE VOCÊ</h2>
+    <div className="d-flex">
+      {productsData.map(product =>(
+        <Cards key={product._id}
+         name={product.name} 
+         price={product.price} 
+         synopsis={product.synopsis}/>
+      ))}
+    </div>
+    </div>
     <Footer />
     </div>
   );

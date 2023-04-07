@@ -9,6 +9,7 @@ import styles from './myCards.module.css'
 function MyAnnuncements() {
   const [userData, setUserData] = useContext(UserContext);
   const [productsData, setProductsData] = useState([]);
+  
   async function getUsersProduct(){
     const usersProductData = await api.get(`/product/${userData._id}`,{
       headers: {

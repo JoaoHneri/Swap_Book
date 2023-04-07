@@ -65,7 +65,7 @@ module.exports = {
         }
     },
     async indexCords(req, res){
-        const { longitude, latitude } = req.query
+        const { latitude, longitude  } = req.query
         const maxDistance = 10000
 
     try{
@@ -74,7 +74,7 @@ module.exports = {
                 $near: {
                     $geometry: {
                         type: 'Point',
-                        coordinates: [longitude, latitude]
+                        coordinates: [latitude, longitude ]
                     },
                     $maxDistance: maxDistance
                 }
