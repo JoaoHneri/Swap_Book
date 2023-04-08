@@ -8,115 +8,154 @@ import Footer from "../../Footer/Footer.js";
 import api from "../../../Services/Api";
 import { useState, useEffect } from "react";
 
-
 const Home = () => {
-
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
   const [productsData, setProductsData] = useState([]);
   const [allBooks, setAllBooks] = useState([]);
   const [searchProducts, setSearchProducts] = useState("");
-  // const [productsByPrice, setProductsByPrice] = useState(100);
+  const [intProducts, setIntProducts] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
+  const [category, setCategory] = useState("");
+  const [CategoredProducts, setCategoredProducts] = useState([])
 
-  useEffect(()=> {
-    getUserLocation()
-  }, [])
+  useEffect(() => {
+    getUserLocation();
+  }, []);
 
-  async function getUserLocation(){
-    navigator.geolocation.getCurrentPosition((position) => {
-      const {latitude, longitude} = position.coords
-      setLatitude(latitude)
-      setLongitude(longitude)
-      console.log(latitude,longitude)
-    }, (err)=> {
-      console.log(err)
-    }, {timeout: 10000})
+  async function getUserLocation() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setLatitude(latitude);
+        setLongitude(longitude);
+      },
+      (err) => {
+        console.log(err);
+      },
+      { timeout: 10000 }
+    );
   }
 
-  useEffect(()=> {
-    getNearProducts()
-  },[latitude, longitude])
+  useEffect(() => {
+    getNearProducts();
+  }, [latitude, longitude]);
 
-  async function getNearProducts(){
-    try{
-      const nearProducts = await api.get(`/product/cords?latitude=${latitude}&longitude=${longitude}`)
-      const {data} = nearProducts
+  async function getNearProducts() {
+    try {
+      const nearProducts = await api.get(
+        `/product/cords?latitude=${latitude}&longitude=${longitude}`
+      );
+      const { data } = nearProducts;
       const limitedItens = data.slice(0, 5);
-      setProductsData(limitedItens)
-
-    }catch(err){
-      alert("Erro ao carregar os produtos")
+      setProductsData(limitedItens);
+    } catch (err) {
+      alert("Erro ao carregar os produtos");
     }
   }
 
-  async function getProducts(){
-    try{
-      const Products = await api.get(`/product/`)
-      const {data} = Products
+  async function getProducts() {
+    try {
+      const Products = await api.get(`/product/`);
+      const { data } = Products;
       const allProducts = data.slice(0, 5);
-      setAllBooks(allProducts)
-
-    }catch(err){
-      alert("Erro ao carregar os produtos")
+      setAllBooks(allProducts);
+      setIntProducts(data);
+    } catch (err) {
+      console.log("Erro ao carregar os produtos");
     }
   }
 
-  useEffect(()=> {
-    getProducts()
-  })
+  useEffect(() => {
+    getProducts();
+  }, [productsData]);
 
-  useEffect(()=> {
-    getSearchProducts()
-  },[searchProducts])
+  useEffect(() => {
+    getSearchProducts();
+  }, [searchProducts, allBooks]);
 
-  function getSearchProducts(){
-    const filteredProducts = productsData.filter(product =>
-        (product.name.toLowerCase().includes(searchProducts.toLowerCase()))
-      )
-      setFilteredData(filteredProducts)
-      console.log(filteredProducts)
+  function getSearchProducts() {
+    const filteredProducts = intProducts.filter((product) =>
+      product.name.toLowerCase().includes(searchProducts.toLowerCase())
+    );
+    setFilteredData(filteredProducts);
   }
 
+  function getCategoryBooks() {
+    const CategoredProducts = intProducts.filter((product) =>
+      product.category.toLowerCase().includes(category.toLowerCase())
+    );
+    const categories = CategoredProducts.slice(0,5)
+    setCategoredProducts(categories);
+  }
+  useEffect(() => {
+    getCategoryBooks();
+  }, [category, intProducts]);
 
   return (
     <div>
-    <Navbar2 setSearchProducts={setSearchProducts} />
-    <div className="d-flex">
-      {searchProducts ? 
-      filteredData ? filteredData.map(product =>(
-        <Cards key={product._id}
-         name={product.name} 
-         price={product.price} 
-         synopsis={product.synopsis}/>
-      )) : <div></div>
-      : null}
-      
-    </div>
-    <CarouselFadeExample />
-    <Categorias />
-    <div className="text-center"><h2>LIVROS:</h2>
-    <div className="d-flex">
-      {allBooks.map(product =>(
-        <Cards key={product._id}
-         name={product.name} 
-         price={product.price} 
-         synopsis={product.synopsis}/>
-      ))}
-    </div>
-    </div>
-    <Trotes />
-    <div className="text-center"><h2>VEJA OS ITENS PRÓXIMOS DE VOCÊ</h2>
-    <div className="d-flex">
-      {productsData.map(product =>(
-        <Cards key={product._id}
-         name={product.name} 
-         price={product.price} 
-         synopsis={product.synopsis}/>
-      ))}
-    </div>
-    </div>
-    <Footer />
+      <Navbar2 setSearchProducts={setSearchProducts} />
+      <div className="d-flex">
+        {searchProducts ? (
+          filteredData ? (
+            filteredData.map((product) => (
+              <Cards
+                key={product._id}
+                name={product.name}
+                price={product.price}
+                synopsis={product.synopsis}
+              />
+            ))
+          ) : null
+        ) : (
+          <div>
+            <CarouselFadeExample />
+            <Categorias setCategory={setCategory} />
+            <div className="text-center">
+              <h2>{category}</h2>
+              <div className="d-flex">
+                {CategoredProducts.map((product) => (
+                  <Cards
+                    key={product._id}
+                    name={product.name}
+                    price={product.price}
+                    synopsis={product.synopsis}
+                  />
+                ))}
+              </div>
+            </div>
+            <Trotes />
+            <div className="text-center">
+              <h2>VEJA OS LIVROS PRÓXIMOS DE VOCÊ</h2>
+              <div className="d-flex">
+                {productsData.map((product) => (
+                  <Cards
+                    key={product._id}
+                    name={product.name}
+                    price={product.price}
+                    synopsis={product.synopsis}
+                  />
+                ))}
+              </div>
+            </div>
+            {/* <div className="text-center">
+              <h2>LIVROS:</h2>
+              <div className="d-flex">
+                {allBooks.map((product) => (
+                  <Cards
+                    key={product._id}
+                    name={product.name}
+                    price={product.price}
+                    synopsis={product.synopsis}
+                  />
+                ))}
+              </div>
+            </div> */}
+          </div>
+        )}
+      </div>
+
+      <Footer />
     </div>
   );
 };

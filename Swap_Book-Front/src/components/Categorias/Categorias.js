@@ -6,8 +6,33 @@ import {RiSpyFill} from 'react-icons/ri'
 import {MdHistoryToggleOff} from 'react-icons/md'
 import  {BsFillPersonBadgeFill} from 'react-icons/bs'
 import {SiApachemaven} from 'react-icons/si'
+import { useEffect, useState } from 'react'
 
-function Categorias() {
+function Categorias({setCategory}) {
+  
+
+  function updateAction(){
+    setCategory("Ação")
+  }
+  function updateFiction(){
+    setCategory("Ficção")
+  }
+  function updateSuspense(){
+    setCategory("Suspense")
+  }
+  function updateHistory(){
+    setCategory("História")
+  }
+  function updateBibiografia(){
+    setCategory("Bibiografia")
+  }
+  function updateTerror(){
+    setCategory("Terror")
+  }
+  function updateFantasy(){
+    setCategory("Fantasia")
+  }
+
   return (
     <div className="categories">
     <div className="container cont_edit">
@@ -15,25 +40,25 @@ function Categorias() {
         <AiFillHeart className='icon'/> <p>Romance</p>
       </div>
       <div className="icons_cartegory text-center">
-        <GiPistolGun className='icon'/> <p>Ação</p>
+          <GiPistolGun className='icon' onClick={updateAction}/> <p>Ação</p>
       </div>
       <div className="icons_cartegory text-center">
-        <GiMaterialsScience className='icon '/> <p>Ficção</p>
+        <GiMaterialsScience className='icon' onClick={updateFiction}/> <p>Ficção</p>
       </div>
       <div className="icons_cartegory text-center">
-        <RiSpyFill className='icon'/> <p>Suspense</p>
+        <RiSpyFill onClick={updateSuspense} className='icon'/> <p>Suspense</p>
       </div>
       <div className="icons_cartegory text-center">
-        <MdHistoryToggleOff className='icon'/> <p>História</p>
+        <MdHistoryToggleOff onClick={updateHistory} className='icon'/> <p>História</p>
       </div>
       <div className="icons_cartegory text-center">
-        <BsFillPersonBadgeFill className='icon'/> <p>Biografia</p>
+        <BsFillPersonBadgeFill onClick={updateBibiografia} className='icon'/> <p>Biografia</p>
       </div>
       <div className="icons_cartegory text-center">
-        <GiScreaming className='icon'/> <p>Terror</p>
+        <GiScreaming className='icon' onClick={updateTerror} /> <p>Terror</p>
       </div>
       <div className="icons_cartegory text-center">
-        <SiApachemaven className='icon' /> <p>Fantasia</p>
+        <SiApachemaven className='icon' onClick={updateFantasy} /> <p>Fantasia</p>
       </div>
     </div>
     </div>
