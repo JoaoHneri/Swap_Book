@@ -6,7 +6,7 @@ import {RiSpyFill} from 'react-icons/ri'
 import {MdHistoryToggleOff} from 'react-icons/md'
 import  {BsFillPersonBadgeFill} from 'react-icons/bs'
 import {SiApachemaven} from 'react-icons/si'
-import { useEffect, useState } from 'react'
+
 
 function Categorias({setCategory}) {
   

@@ -7,6 +7,8 @@ import Trotes from "../../Trotes/Trotes.js";
 import Footer from "../../Footer/Footer.js";
 import api from "../../../Services/Api";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 
 const Home = () => {
   const [latitude, setLatitude] = useState(0);
@@ -127,6 +129,7 @@ const Home = () => {
             <Trotes />
             <div className="text-center">
               <h2>VEJA OS LIVROS PRÓXIMOS DE VOCÊ</h2>
+              <Link to="/map_products"><p>Veja no Mapa</p></Link>
               <div className="d-flex">
                 {productsData.map((product) => (
                   <Cards

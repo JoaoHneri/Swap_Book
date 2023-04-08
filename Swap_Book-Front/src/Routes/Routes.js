@@ -10,9 +10,10 @@ import Dashboard from "../components/pages/Dashboard/Dashboard";
 import LoginPage from "../components/Login/Login";
 import RegisterPage from "../components/Login/Register";
 import BookDetails from "../components/pages/BooksDetails/BooksDetails";
-import { useState,useContext } from "react";
+import { useContext } from "react";
 import { UserContext } from "../components/UseContext/UserContext";
 import MyAnnuncements from "../components/pages/MyAnnunciments/MyAnnuncements";
+import MapGL from "../components/MapGL/MapGL";
 
 const Rotas = () => {
     const [userData, setUserData] = useContext(UserContext)
@@ -31,6 +32,7 @@ const Rotas = () => {
           />
           <Route exact path="/login" Component={LoginPage} />
           <Route exact path="/registrar" Component={RegisterPage} />
+          <Route exact path="/map_products" Component={MapGL}/>
         </Routes>
       </Router>
   );
