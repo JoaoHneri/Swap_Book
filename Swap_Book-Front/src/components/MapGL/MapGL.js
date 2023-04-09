@@ -19,7 +19,7 @@ function App() {
 
   function getSearchProducts() {
     const filteredProducts = intProducts.filter((product) =>
-      product.name.toLowerCase().includes(searchProducts)
+      product.name.toLowerCase().includes(searchProducts.toLocaleLowerCase())
     );
     setIntProducts(filteredProducts);
     
@@ -66,7 +66,7 @@ function App() {
         longitude: longitude,
         zoom: 8,
       }}
-      style={{ width: window.innerWidth, height: window.innerHeight }}
+      style={{ width: window.innerWidth, height: "500px"}}
       mapStyle="mapbox://styles/mapbox/streets-v9"
       mapboxAccessToken="pk.eyJ1Ijoic2lsYXNtYXRvcyIsImEiOiJjbGc3ZGk1bHAwM3g1M2VwOXkzcDJocnFuIn0.65mSwnqFVa_SlKp_rPSuEw"
     >
@@ -100,6 +100,7 @@ function App() {
           }}
         >
           <Cards
+          key={selectedProduct._id}
             name={selectedProduct.name}
             price={selectedProduct.price}
             userName={selectedProduct.user.name}

@@ -8,7 +8,8 @@ import Footer from "../../Footer/Footer.js";
 import api from "../../../Services/Api";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import { useContext } from "react";
+import { UserContext } from "../../UseContext/UserContext.js";
 
 const Home = () => {
   const [latitude, setLatitude] = useState(0);
@@ -19,7 +20,8 @@ const Home = () => {
   const [intProducts, setIntProducts] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [category, setCategory] = useState("");
-  const [CategoredProducts, setCategoredProducts] = useState([])
+  const [CategoredProducts, setCategoredProducts] = useState([]);
+  const [userData, setUserData] = useContext(UserContext);
 
   useEffect(() => {
     getUserLocation();
@@ -87,7 +89,7 @@ const Home = () => {
     const CategoredProducts = intProducts.filter((product) =>
       product.category.toLowerCase().includes(category.toLowerCase())
     );
-    const categories = CategoredProducts.slice(0,5)
+    const categories = CategoredProducts.slice(0, 5);
     setCategoredProducts(categories);
   }
   useEffect(() => {
@@ -129,7 +131,12 @@ const Home = () => {
             <Trotes />
             <div className="text-center">
               <h2>VEJA OS LIVROS PRÓXIMOS DE VOCÊ</h2>
-              <Link to="/map_products"><p>Veja no Mapa</p></Link>
+              {userData.isLogged ? (
+                <Link to="/map_products">
+                  <p>Veja no Mapa</p>
+                </Link>
+              ) : null}
+
               <div className="d-flex">
                 {productsData.map((product) => (
                   <Cards

@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../UseContext/UserContext";
 import { useNavigate } from "react-router-dom";
 
+
+
 function Navbar2({setSearchProducts}) {
   const [userData, setUserData] = useContext(UserContext);
 
@@ -25,12 +27,18 @@ function Navbar2({setSearchProducts}) {
     e.preventDefault();
   }
 
+  async function navigacao() {
+    navigate('/')
+    await navigate('/')
+    window.location.reload(true)
+  }
+
   return (
     <>
       <header className="bg-white shadow-sm">
         <div className="container mx-auto px-4 py-6 flex justify-between items-center">
           <div>
-            <Link to="/">
+            <Link to="/"  onClick={function(e) {navigacao()}}>
               <h1 className="text-lg font-bold text-gray-800">Swap Book</h1>
             </Link>
           </div>
