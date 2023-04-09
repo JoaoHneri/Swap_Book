@@ -54,7 +54,7 @@ const Home = () => {
       const limitedItens = data.slice(0, 5);
       setProductsData(limitedItens);
     } catch (err) {
-      alert("Erro ao carregar os produtos");
+      console.log("Erro ao carregar os produtos");
     }
   }
 
@@ -72,7 +72,7 @@ const Home = () => {
 
   useEffect(() => {
     getProducts();
-  }, [productsData]);
+  }, [productsData, allBooks]);
 
   useEffect(() => {
     getSearchProducts();

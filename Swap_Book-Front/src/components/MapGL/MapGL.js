@@ -33,7 +33,6 @@ function App() {
       const { data } = Products;
       setIntProducts(data);
     } catch (err) {
-      console.log("Erro ao carregar os produtos");
     }
   }
 
