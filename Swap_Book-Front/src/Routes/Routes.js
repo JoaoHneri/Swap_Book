@@ -32,7 +32,10 @@ const Rotas = () => {
           />
           <Route exact path="/login" Component={LoginPage} />
           <Route exact path="/registrar" Component={RegisterPage} />
-          <Route exact path="/map_products" Component={MapGL}/>
+          <Route
+            path="/map_products"
+            element={userData.isLogged ? <MapGL/> : <Navigate to="/" />}
+          />
         </Routes>
       </Router>
   );

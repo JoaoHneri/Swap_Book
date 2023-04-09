@@ -11,34 +11,30 @@ function App() {
   const [intProducts, setIntProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState();
   const [searchProducts, setSearchProducts] = useState("");
-
-
-  useEffect(() => {
-    getSearchProducts();
-  }, [searchProducts, intProducts]);
-
-  function getSearchProducts() {
-    const filteredProducts = intProducts.filter((product) =>
-      product.name.toLowerCase().includes(searchProducts.toLocaleLowerCase())
-    );
-    setIntProducts(filteredProducts);
-    
-  }
-
+  const [brincadeira, setsetBrincadeira] = useState([]);
  
-
   async function getProducts() {
+    
     try {
+      
       const Products = await api.get(`/product/`);
       const { data } = Products;
-      setIntProducts(data);
+      setsetBrincadeira(data)
+      const filteredProducts = brincadeira.filter((product) =>
+      product.name.toLowerCase().includes(searchProducts.toLocaleLowerCase())
+    )
+      if(searchProducts.length == 0){
+        setIntProducts(data)
+        }else{
+          setIntProducts(filteredProducts)
+        }
     } catch (err) {
     }
   }
 
   useEffect(() => {
     getProducts();
-  }, [intProducts]);
+  }, [brincadeira]);
 
   async function getUserLocation() {
     navigator.geolocation.getCurrentPosition(
@@ -55,7 +51,7 @@ function App() {
   }
   useEffect(() => {
     getUserLocation();
-  });
+  },[latitude,longitude]);
 
   return (<>
     <Navbar2 setSearchProducts={setSearchProducts}/>

@@ -72,18 +72,21 @@ const Home = () => {
 
   useEffect(() => {
     getProducts();
-  }, [productsData, allBooks]);
+  }, []);
 
-  useEffect(() => {
-    getSearchProducts();
-  }, [searchProducts, allBooks]);
-
+  
   function getSearchProducts() {
     const filteredProducts = intProducts.filter((product) =>
       product.name.toLowerCase().includes(searchProducts.toLowerCase())
     );
     setFilteredData(filteredProducts);
   }
+
+  useEffect(() => {
+    getSearchProducts();
+  }, [searchProducts, allBooks, intProducts]);
+
+  
 
   function getCategoryBooks() {
     const CategoredProducts = intProducts.filter((product) =>
@@ -92,9 +95,10 @@ const Home = () => {
     const categories = CategoredProducts.slice(0, 5);
     setCategoredProducts(categories);
   }
+
   useEffect(() => {
     getCategoryBooks();
-  }, [category, intProducts]);
+  }, [allBooks,category, intProducts]);
 
   return (
     <div>
