@@ -5,9 +5,10 @@ import api from "../../Services/Api";
 import Cards from "../Cards/Cards";
 import Navbar2 from "../Navbar2/Navbar2";
 
+
 function App() {
-  const [latitude, setLatitude] = useState();
-  const [longitude, setLongitude] = useState();
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
   const [intProducts, setIntProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState();
   const [searchProducts, setSearchProducts] = useState("");
@@ -36,6 +37,10 @@ function App() {
     getProducts();
   }, [brincadeira]);
 
+  useEffect(() => {
+    getUserLocation();
+  }, []);
+
   async function getUserLocation() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -49,9 +54,7 @@ function App() {
       { timeout: 10000 }
     );
   }
-  useEffect(() => {
-    getUserLocation();
-  },[latitude,longitude]);
+  
 
   return (<>
     <Navbar2 setSearchProducts={setSearchProducts}/>
@@ -62,7 +65,7 @@ function App() {
         zoom: 8,
       }}
       style={{ width: window.innerWidth, height: "500px"}}
-      mapStyle="mapbox://styles/mapbox/streets-v9"
+      mapStyle="mapbox://styles/mapbox/dark-v11"
       mapboxAccessToken="pk.eyJ1Ijoic2lsYXNtYXRvcyIsImEiOiJjbGc3ZGk1bHAwM3g1M2VwOXkzcDJocnFuIn0.65mSwnqFVa_SlKp_rPSuEw"
     >
       {intProducts.map((product) => (

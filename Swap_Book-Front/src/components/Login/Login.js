@@ -23,7 +23,14 @@ const LoginPage = () => {
         email,
         password
       })
-
+      const User = userData.data
+      const userGuard = JSON.stringify(User.email).replace(/["]/g, '');
+      const nameGuard = JSON.stringify(User.name).replace(/["]/g, '');
+      const idGuard = JSON.stringify(User._id).replace(/["]/g, '');
+      localStorage.setItem('email', userGuard)
+      localStorage.setItem('name', nameGuard)
+      localStorage.setItem('id', idGuard)
+      localStorage.setItem('IsLogged', true)
       const userInfo = userData.data
       console.log(userInfo)
 
@@ -32,12 +39,14 @@ const LoginPage = () => {
         isLogged: true,
       email: userInfo.email,
     name: userInfo.name,
-  _id: userInfo._id}))
+  _id: userInfo._id,
+  }))
       navigate('/')
     }catch (err){
       alert('Falha no Login, tente novamente! ')
     }
   }
+  
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">

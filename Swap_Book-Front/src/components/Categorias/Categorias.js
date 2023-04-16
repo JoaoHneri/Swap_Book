@@ -21,10 +21,10 @@ function Categorias({setCategory}) {
     setCategory("Suspense")
   }
   function updateHistory(){
-    setCategory("História")
+    setCategory("Historia")
   }
   function updateBibiografia(){
-    setCategory("Bibiografia")
+    setCategory("bibiografia")
   }
   function updateTerror(){
     setCategory("Terror")

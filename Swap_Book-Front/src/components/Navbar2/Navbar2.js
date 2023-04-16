@@ -15,16 +15,13 @@ function Navbar2({setSearchProducts}) {
   const navigate = useNavigate();
 
   async function logoutHandler(e) {
-    
-    setUserData((prevState) => ({
-      ...prevState,
-      isLogged: false,
-      email: '',
-      name: '',
-      _id: ''
-    }));
-    navigate("/");
-    e.preventDefault();
+    localStorage.setItem('email', '')
+    localStorage.setItem('name', '')
+    localStorage.setItem('id', '')
+    localStorage.removeItem('IsLogged')
+    await navigate('/')
+    window.location.reload(true)
+    e.preventDefault()
   }
 
   async function navigacao() {
