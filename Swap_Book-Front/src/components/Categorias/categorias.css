@@ -23,6 +23,7 @@
 
 .icon{
   color: rgba(0, 0, 0, 0.884);
+  cursor: pointer;
 }
 
 p{
