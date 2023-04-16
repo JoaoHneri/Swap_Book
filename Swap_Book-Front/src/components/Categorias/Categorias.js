@@ -32,12 +32,15 @@ function Categorias({setCategory}) {
   function updateFantasy(){
     setCategory("Fantasia")
   }
+  function updateRomance(){
+    setCategory("Romance")
+  }
 
   return (
     <div className="categories">
     <div className="container cont_edit">
       <div className="icons_cartegory text-center">
-        <AiFillHeart className='icon'/> <p>Romance</p>
+        <AiFillHeart className='icon' onClick={updateRomance}/> <p>Romance</p>
       </div>
       <div className="icons_cartegory text-center">
           <GiPistolGun className='icon' onClick={updateAction}/> <p>Ação</p>

@@ -70,13 +70,14 @@ const Dashboard = () => {
             setCategoria(e.target.value)}
             value={categoria}
              name="Categorias">
-              <option value="Romance"selected> Categória </option>
+              <option value=""selected> Categória </option>
               <option value="Ficção" > Ficção</option>
               <option value="Ação">Ação</option>
               <option value="Suspense">Suspense</option>
               <option value="Historia">História</option>
               <option value="Bibliografia">Bibliografia</option>
               <option value="Terror">Terror</option>
+              <option value="Romance">Romance</option>
               <option value="Fantasia">Fantasia</option>
             </select>
 
