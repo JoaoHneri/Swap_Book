@@ -1,6 +1,9 @@
+import { Link, useNavigate } from 'react-router-dom'
 import '../Cards/cardsStyle.css'
+
 // import { Link } from 'react-router-dom'
-function Cards({name, price, synopsis}) {
+function Cards({name, price, synopsis, _id}) {
+  
 
   return (
     <div className="cards container">
@@ -12,6 +15,7 @@ function Cards({name, price, synopsis}) {
         <h1>{name}</h1>
         <p className="price">R${price}</p>
         <p>{synopsis}</p>
+        <p><Link to={`/details/${_id}`}>Detalhes</Link></p>
         <p>
          <button>Add to cart</button>
         </p>

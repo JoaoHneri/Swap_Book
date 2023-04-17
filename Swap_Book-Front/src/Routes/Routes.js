@@ -25,7 +25,7 @@ const Rotas = () => {
             path="/meus_anuncios"
             element={userData.isLogged ? <MyAnnuncements /> : <Navigate to="/" />}
           />
-          <Route exact path="/details" Component={BookDetails} />
+          <Route exact path="/details/:_id" Component={BookDetails} />
           <Route
             path="/dashboard"
             element={userData.isLogged ? <Dashboard /> : <Navigate to="/" />}

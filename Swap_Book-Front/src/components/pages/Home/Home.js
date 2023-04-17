@@ -108,6 +108,7 @@ const Home = () => {
           filteredData ? (
             filteredData.map((product) => (
               <Cards
+                _id={product._id}
                 key={product._id}
                 name={product.name}
                 price={product.price}
@@ -125,6 +126,7 @@ const Home = () => {
                 {CategoredProducts.map((product) => (
                   <Cards
                     key={product._id}
+                    _id={product._id}
                     name={product.name}
                     price={product.price}
                     synopsis={product.synopsis}
@@ -144,6 +146,7 @@ const Home = () => {
               <div className="d-flex">
                 {productsData.map((product) => (
                   <Cards
+                    _id={product._id}
                     key={product._id}
                     name={product.name}
                     price={product.price}
