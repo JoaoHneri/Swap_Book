@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../UseContext/UserContext.js";
+import styles from './Home.module.css'
 
 const Home = () => {
   const [latitude, setLatitude] = useState(0);
@@ -103,7 +104,7 @@ const Home = () => {
   return (
     <div>
       <Navbar2 setSearchProducts={setSearchProducts} />
-      <div className="d-flex">
+      <div className={`${styles.cards} d-flex`}>
         {searchProducts ? (
           filteredData ? (
             filteredData.map((product) => (
@@ -122,7 +123,7 @@ const Home = () => {
             <Categorias setCategory={setCategory} />
             <div className="text-center">
               <h2>{category}</h2>
-              <div className="d-flex">
+              <div className={`${styles.cards} d-flex`}>
                 {CategoredProducts.map((product) => (
                   <Cards
                     key={product._id}
@@ -135,7 +136,7 @@ const Home = () => {
               </div>
             </div>
             <Trotes />
-            <div className="text-center">
+            <div className={`text-center`}>
               <h2>VEJA OS LIVROS PRÓXIMOS DE VOCÊ</h2>
               {userData.isLogged ? (
                 <Link to="/map_products">
@@ -143,7 +144,7 @@ const Home = () => {
                 </Link>
               ) : null}
 
-              <div className="d-flex">
+              <div className={`${styles.cards} d-flex`}>
                 {productsData.map((product) => (
                   <Cards
                     _id={product._id}

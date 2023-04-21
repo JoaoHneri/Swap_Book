@@ -6,7 +6,7 @@ function Cards({name, price, synopsis, _id}) {
   
 
   return (
-    <div className="cards container">
+
       <div className="card">
         <img
           src="https://m.media-amazon.com/images/P/B00S8JNR50.01._SCLZZZZZZZ_SX500_.jpg"
@@ -22,7 +22,6 @@ function Cards({name, price, synopsis, _id}) {
         
       </div>
         
-    </div>
   )
 }
 export default Cards

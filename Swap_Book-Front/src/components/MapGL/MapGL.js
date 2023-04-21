@@ -99,6 +99,7 @@ function App() {
         >
           <Cards
           key={selectedProduct._id}
+            _id={selectedProduct._id}
             name={selectedProduct.name}
             price={selectedProduct.price}
             userName={selectedProduct.user.name}
