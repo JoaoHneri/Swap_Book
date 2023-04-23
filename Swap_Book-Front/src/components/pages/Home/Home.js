@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../UseContext/UserContext.js";
 import styles from './Home.module.css'
+import CarouselCards from "../../CarouselCards/CarouselCards.js";
 
 const Home = () => {
   const [latitude, setLatitude] = useState(0);
@@ -123,17 +124,7 @@ const Home = () => {
             <Categorias setCategory={setCategory} />
             <div className="text-center">
               <h2>{category}</h2>
-              <div className={`${styles.cards} d-flex`}>
-                {CategoredProducts.map((product) => (
-                  <Cards
-                    key={product._id}
-                    _id={product._id}
-                    name={product.name}
-                    price={product.price}
-                    synopsis={product.synopsis}
-                  />
-                ))}
-              </div>
+              <CarouselCards data={intProducts}/>
             </div>
             <Trotes />
             <div className={`text-center`}>
