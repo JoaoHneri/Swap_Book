@@ -1,15 +1,12 @@
-import { Link, useNavigate } from 'react-router-dom'
 import '../Cards/cardsStyle.css'
-
-// import { Link } from 'react-router-dom'
-function Cards({name, price, synopsis, _id}) {
-  
+import { Link } from 'react-router-dom'
+function Cards({name, price, synopsis, src, _id}) {
 
   return (
 
       <div className="card">
         <img
-          src="https://m.media-amazon.com/images/P/B00S8JNR50.01._SCLZZZZZZZ_SX500_.jpg"
+         src={`http://localhost:3333/${src}`}
           alt="Denim Jeans"
         ></img>
         <h1>{name}</h1>
@@ -22,6 +19,7 @@ function Cards({name, price, synopsis, _id}) {
         
       </div>
         
+
   )
 }
 export default Cards

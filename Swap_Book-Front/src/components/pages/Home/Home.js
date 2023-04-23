@@ -10,8 +10,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../UseContext/UserContext.js";
-import styles from './Home.module.css'
 import CarouselCards from "../../CarouselCards/CarouselCards.js";
+import styles from './Home.module.css'
 
 const Home = () => {
   const [latitude, setLatitude] = useState(0);
@@ -76,7 +76,6 @@ const Home = () => {
     getProducts();
   }, []);
 
-  
   function getSearchProducts() {
     const filteredProducts = intProducts.filter((product) =>
       product.name.toLowerCase().includes(searchProducts.toLowerCase())
@@ -88,8 +87,6 @@ const Home = () => {
     getSearchProducts();
   }, [searchProducts, allBooks, intProducts]);
 
-  
-
   function getCategoryBooks() {
     const CategoredProducts = intProducts.filter((product) =>
       product.category.toLowerCase().includes(category.toLowerCase())
@@ -100,34 +97,48 @@ const Home = () => {
 
   useEffect(() => {
     getCategoryBooks();
-  }, [allBooks,category, intProducts]);
+  }, [allBooks, category, intProducts]);
 
   return (
     <div>
       <Navbar2 setSearchProducts={setSearchProducts} />
-      <div className={`${styles.cards} d-flex`}>
+      <div className="d-flex">
         {searchProducts ? (
           filteredData ? (
-            filteredData.map((product) => (
+            <div className={`${styles.cards} d-flex`}>
+              { filteredData.map((product) => (
               <Cards
-                _id={product._id}
                 key={product._id}
                 name={product.name}
+                _id={product._id}
                 price={product.price}
                 synopsis={product.synopsis}
+                src={product.src}
               />
-            ))
-          ) : null
+            ))}
+            </div>
+          ) : "Produto não Encontrado"
         ) : (
           <div>
             <CarouselFadeExample />
             <Categorias setCategory={setCategory} />
             <div className="text-center">
               <h2>{category}</h2>
-              <CarouselCards data={intProducts}/>
+              <div className={`${styles.cards} d-flex`}>
+                {CategoredProducts.map((product) => (
+                  <Cards
+                    key={product._id}
+                    _id={product._id}
+                    name={product.name}
+                    src={product.src}
+                    price={product.price}
+                    synopsis={product.synopsis}
+                  />
+                ))}
+              </div>
             </div>
             <Trotes />
-            <div className={`text-center`}>
+            <div className="text-center">
               <h2>VEJA OS LIVROS PRÓXIMOS DE VOCÊ</h2>
               {userData.isLogged ? (
                 <Link to="/map_products">
@@ -138,9 +149,10 @@ const Home = () => {
               <div className={`${styles.cards} d-flex`}>
                 {productsData.map((product) => (
                   <Cards
-                    _id={product._id}
                     key={product._id}
+                    _id={product._id}
                     name={product.name}
+                    src={product.src}
                     price={product.price}
                     synopsis={product.synopsis}
                   />

@@ -12,6 +12,7 @@ function CarouselCards({ data }) {
           {data.slice(0, 5).map((product) => (
             <Cards
               key={product._id}
+              src={product.src}
               _id={product._id}
               name={product.name}
               price={product.price}
@@ -27,6 +28,7 @@ function CarouselCards({ data }) {
               <Cards
                 key={product._id}
                 _id={product._id}
+                src={product.src}
                 name={product.name}
                 price={product.price}
                 synopsis={product.synopsis}

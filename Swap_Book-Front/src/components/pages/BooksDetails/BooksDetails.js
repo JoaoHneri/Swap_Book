@@ -8,11 +8,8 @@ const BookDetails = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [response, setResponse] = useState([]);
   const images = [
-    'https://source.unsplash.com/random/400x400',
-    'https://source.unsplash.com/random/401x401',
-    'https://source.unsplash.com/random/402x402',
-    'https://source.unsplash.com/random/403x403',
-    'https://source.unsplash.com/random/404x404',
+    `{http://localhost:3333/${response.src}}`,
+    `{http://localhost:3333/${response.src}}`,
   ];
   const [searchProducts, setSearchProducts] = useState("");
   const [intProducts, setIntProducts] = useState([]);
@@ -69,61 +66,51 @@ const BookDetails = () => {
   return (
     <>
     <Navbar2 setSearchProducts={setSearchProducts} />
-    <div className="d-flex">
         {searchProducts ? (
           filteredData ? (
-            filteredData.map((product) => (
+            <div className="d-flex">
+              {filteredData.map((product) => (
               <Cards
                 _id={product._id}
                 key={product._id}
                 name={product.name}
                 price={product.price}
                 synopsis={product.synopsis}
+                src={product.src}
               />
-            ))
+            ))}
+            </div>
+            
           ) : null
         ) : (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
-      <div className="bg-white rounded-lg shadow-lg p-8 w-2/3">
-        <div className="flex">
-          <div className="w-1/2">
-            <img src={images[currentImage]} alt="Book" className="w-full" />
-            <div className="flex justify-center mt-4">
-              {images.map((image, index) => (
-                <img
-                  key={index}
-                  src={image}
-                  alt="Book"
-                  className={`w-10 h-10 rounded-full cursor-pointer mx-2 ${
-                    currentImage === index && 'border-2 border-blue-500'
-                  }`}
-                  onClick={() => handleImageClick(index)}
-                />
-              ))}
+          <div>
+            <div className="flex flex-col items-center justify-center h-screen bg-gray-200 my-1 mb-10" >
+          <div className="max-w-6xl bg-white p-5 rounded-lg shadow-lg">
+            <div className="flex flex-col sm:flex-row">
+              <div className="sm:w-1/3">
+                <img src={`http://localhost:3333/${response.src}`} alt="Book Cover" className="w-full rounded-lg shadow-lg" />
+              </div>
+              <div className="sm:w-2/3 sm:pl-6 mt-4 sm:mt-0">
+                <h1 className="text-3xl font-bold mb-4">{response.name}</h1>
+                <p className="text-gray-800 text-lg font-medium mb-4">
+                {response.synopsis}
+                </p>
+                <span className="text-gray-600 text-sm mb-2">Autor(a): {response.author}</span>
+                <div className="flex items-center mb-4">
+                  <span className="text-gray-600 text-sm">(12)</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="text-2xl font-bold"><h4>Preço: R${response.price},00</h4></div>
+                  <button className="rounded-3xl bg-black px-6 py-2 text-xl font-medium uppercase text-white">Add to Cart</button>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="w-1/2 pl-6">
-            <h1 className="text-3xl font-bold mb-4">{response.name}</h1>
-            <h2 className="text-xl font-medium mb-4">{response.author}</h2>
-            <p className="text-gray-1000 mb-4">
-              {response.synopsis}
-            </p>
-            <ul className="text-gray-700 mb-4">
-              <li>Categoria: {response.category}</li>
-              <li>Ano de Publicação: {response.year}</li>
-            </ul>
-            <button
-              type="button"
-              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg"
-            >
-              Compre Agora!
-            </button>
-          </div>
         </div>
-      </div>
-      
-    </div>)}
-    </div>
+          </div>
+          
+  )}
+
     </>
   );
 };

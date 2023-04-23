@@ -7,6 +7,7 @@ module.exports = {
         const { user_id } = req.params
 
         const { auth } = req.headers
+        
 
         if(user_id !== auth) return res.status(400).send({ message: 'nao autorizando'})
        
@@ -23,16 +24,13 @@ module.exports = {
                 coordinates: [longitude, latitude]
             }
 
-            
-
-             
-
-            const createdProduct = await Product.create({name, price, user: user_id, location: setLocation, author, category, synopsis, year})
-            await createdProduct.populate('user')
+            const createdProduct = await Product.create({name, price, user: user_id, location: setLocation, author, category, synopsis, year,  src: req.file.path })
+            const populatedProduct = await Product.findById(createdProduct._id).populate('user')
            
 
-            return res.status(201).send(createdProduct)
+            return res.status(201).send(populatedProduct)
         }catch(err){
+            console.log('foi aqui')
             return res.status(400).send(err)
         }
     },
@@ -42,6 +40,7 @@ module.exports = {
 
         const { product_id, user_id} = req.params 
         const { auth } = req.headers
+       
 
         if(user_id !== auth) return res.status(400).send({ message: 'nao autorizando' })
        

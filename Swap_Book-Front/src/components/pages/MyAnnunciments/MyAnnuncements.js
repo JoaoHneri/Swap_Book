@@ -29,9 +29,9 @@ function MyAnnuncements() {
     <div>
       <Navbar2/>
       <h1 className='text-center'>Meus Anúncios</h1>
-      <div className={`${styles.cars} d-flex`}>
+      <div className={`${styles.cards} d-flex`}>
       {productsData.map(product => (
-       <MyCards key={product._id} name={product.name} price={product.price} synopsis={product.synopsis}/> 
+       <MyCards key={product._id} _id={product._id} name={product.name} src={product.src} price={product.price} synopsis={product.synopsis}/> 
       ))}
       </div>
     </div>
