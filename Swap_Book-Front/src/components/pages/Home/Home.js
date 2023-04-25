@@ -102,6 +102,7 @@ const Home = () => {
   return (
     <div>
       <Navbar2 setSearchProducts={setSearchProducts} />
+      
       <div className="d-flex">
         {searchProducts ? (
           filteredData ? (

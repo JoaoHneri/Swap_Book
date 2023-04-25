@@ -51,7 +51,7 @@ const LoginPage = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
       <div className="bg-white p-10 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold mb-4">Login</h1>
+        <h1 className="text-3xl font-bold mb-4 text-center">Login</h1>
         <form className="space-y-6">
           <div>
             <label htmlFor="email" className="block text-gray-800 font-bold mb-2">

@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 const RegisterPage = () => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
-  const [telefone, setTelefone] = useState("")
+  const [phone, setPhone] = useState("")
   const [password, setPassword] = useState("")
   const [latitude, setLatitude] = useState(0)
   const [longitude, setLongitude] = useState(0)
@@ -22,9 +22,9 @@ const RegisterPage = () => {
     try {
       await api.post('user', {
         name,
-        telefone,
         email,
         password,
+        phone,
         latitude,
         longitude
       } )
@@ -80,18 +80,21 @@ const RegisterPage = () => {
               className="w-full border border-gray-300 p-2 rounded-lg"
               placeholder="Enter your email address"
             />
-            <label htmlFor="Telefone" className="block text-gray-800 font-bold mb-2">
-              Telefone
-            </label>
-            <input
-              type="number"
-              value={telefone}
-              id="telefone"
-              onChange={e => setTelefone(e.target.value)}
-              name="telefone"
-              className="w-full border border-gray-300 p-2 rounded-lg"
-              placeholder="Seu telefone"
-            />
+           <label htmlFor="Telefone" className="block text-gray-800 font-bold mb-2">
+  Telefone
+</label>
+<input
+  type="tel"
+  value={phone}
+  id="telefone"
+  onChange={e => setPhone(e.target.value)}
+  name="telefone"
+  className="w-full border border-gray-300 p-2 rounded-lg"
+  placeholder="(XX) XXXX-XXXX"
+  pattern="[0-9]{2} [0-9]{4,5}-[0-9]{4}"
+  required
+/>
+
           </div>
           <div>
             <label htmlFor="password" className="block text-gray-800 font-bold mb-2">

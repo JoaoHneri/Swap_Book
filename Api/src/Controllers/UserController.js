@@ -13,7 +13,7 @@ async function hashPassword(password) {
 
 module.exports = {
   async create(req, res) {
-    const { name, email, password, latitude, longitude } = req.body
+    const { name, email, password, phone, latitude, longitude } = req.body
 
     const location = {
       type: 'Point',
@@ -29,6 +29,7 @@ module.exports = {
       const createdUser = await User.create({
         name,
         email,
+        phone,
         password: hashedPassword,
         location
       })

@@ -16,6 +16,11 @@ const Schema = new mongoose.Schema({
     type: String,
     required: true
   },
+  phone:{
+    type: String,
+    required: true
+  },
+
   location: {
     type: PointSchema,
     index: '2dsphere'

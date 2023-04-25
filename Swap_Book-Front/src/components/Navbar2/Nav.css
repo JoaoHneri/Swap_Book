@@ -1,96 +1,82 @@
-/* From uiverse.io by @satyamchaudharydev */
-/* removing default style of button */
+
 .icon-size {
     font-size: 2rem;
     display: flex;
     align-items: center;
+    margin-left: 10px;
+  }
+  #img-logo{
+    width: 120px;
   }
   .icon{
     display: flex;
     align-items: center;
+  }
+  .icon:hover{
+    color: #00a8ff;
   }
   .icon-size .user-name{
     display: flex;
     flex-direction: column;
   }
   
-.form button {
-    border: none;
-    background: none;
-    color: #8b8ba7;
-  }
-  /* styling of whole input container */
-  .form {
-    --timing: 0.3s;
-    --width-of-input: 200px;
-    --height-of-input: 40px;
-    --border-height: 2px;
-    --input-bg: #fff;
-    --border-color: #2f2ee9;
-    --border-radius: 30px;
-    --after-border-radius: 1px;
+  .container-input {
     position: relative;
-    width: var(--width-of-input);
-    height: var(--height-of-input);
-    display: flex;
-    align-items: center;
-    padding-inline: 0.8em;
-    border-radius: var(--border-radius);
-    transition: border-radius 0.5s ease;
-    background: var(--input-bg,#fff);
-    margin-right: 20px;
   }
-  /* styling of Input */
-  .input {
-    font-size: 0.9rem;
-    background-color: transparent;
-    width: 100%;
-    height: 100%;
-    padding-inline: 0.5em;
-    padding-block: 0.7em;
-    border: none;
+  #logout{
+    color: black;
+    margin-top: 2.5px;
   }
-  /* styling of animated border */
-  .form:before {
-    content: "";
-    position: absolute;
-    background: var(--border-color);
-    transform: scaleX(0);
-    transform-origin: center;
-    width: 100%;
-    height: var(--border-height);
-    left: 0;
-    bottom: 0;
-    border-radius: 1px;
-    transition: transform var(--timing) ease;
+  #logout:hover{
+    color: #00a8ff;
   }
-  /* Hover on Input */
-  .form:focus-within {
-    border-radius: var(--after-border-radius);
+  .input-pesquisa {
+    width: 140px;
+    padding: 8px 0px 8px 35px;
+    border-radius: 9999px;
+    color: #333;
+    border: solid 1px #333;
+    transition: all .2s ease-in-out;
+    outline: none;
+    font-size: 10pt;
+    opacity: 0.8;
   }
   
-  input:focus {
-    outline: none;
+  .container-input svg {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translate(0, -50%);
   }
-  /* here is code of animated border */
-  .form:focus-within:before {
-    transform: scale(1);
-  }
-  /* styling of close button */
-  /* == you can click the close button to remove text == */
-  .reset {
-    border: none;
-    background: none;
-    opacity: 0;
-    visibility: hidden;
-  }
-  /* close button shown when typing */
-  input:not(:placeholder-shown) ~ .reset {
+  
+  .input-pesquisa:focus {
     opacity: 1;
-    visibility: visible;
+    width: 250px;
   }
-  /* sizing svg icons */
-  .form svg {
-    width: 17px;
-    margin-top: 3px;
+  .btn_nav{
+    margin: 0px, 20px, 0px, 50px;
+    margin-left: 10px;
+    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    border: transparent;
+    border-radius: 15px;
+    font-weight: 500;
+    color: #fff;
+   
+    background-image: linear-gradient(to top,  #00aaffb7 0%,  #00a8ff 100%);
+   
+  }
+  @media (max-width: 600px) {
+    .icon {
+      flex-direction: row;
+      display: block;
+
+    }
+    .icon-size{
+      flex-direction: row;
+      margin-left: 0px;
+    }
+    .btn_nav{
+      margin-top: 8px;
+      margin-left: 0px;
+    }
   }

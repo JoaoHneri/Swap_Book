@@ -51,26 +51,30 @@ const Dashboard = () => {
     <h1 className="text-center"> Adicionar um Produto</h1>
     <div className="col-12 container">
     <div className="row ">
-      <div className="col-6">
-        <label>Imagem:</label>
-        <input type="file" multiple onChange={(e) => setSrc(e.target.files)} />
-        {src && (
-          <div>
-            {Array.from(src).map((file) => (
-              <img key={file.name} src={URL.createObjectURL(file)} alt={file.name} />
-            ))}
-          </div>
-        )}
-      </div>
+    <div className="col-6 edit-col">
+  <label className="text-img">Insira uma Imagem:</label>
+  <div className="input-wrapper">
+    <input type="file" multiple onChange={(e) => setSrc(e.target.files)} />
+    <span className="btn-preview">Escolher arquivo</span>
+  </div>
+  {src && (
+    <div className="preview-wrapper">
+      {Array.from(src).map((file) => (
+        <img key={file.name} src={URL.createObjectURL(file)} alt={file.name} />
+      ))}
+    </div>
+  )}
+</div>
+
 
       <div className="col-md-6 products-inputs">
-        <input type="text" className="" onChange={(e) => setProductName(e.target.value)} placeholder="Nome do Livro" value={productName} />
+        <input type="text" className="input-edit" onChange={(e) => setProductName(e.target.value)} placeholder="Nome do Livro" value={productName} />
 
-        <input type="number" className="" placeholder="Ano" onChange={(e) => setProductYear(e.target.value)} />
+        <input type="number" className="input-edit" placeholder="Ano" onChange={(e) => setProductYear(e.target.value)} />
 
-        <input type="text" className="" placeholder="Autor" value={autorProduct} onChange={(e) => setAutorProduct(e.target.value)} />
+        <input type="text" className="input-edit" placeholder="Autor" value={autorProduct} onChange={(e) => setAutorProduct(e.target.value)} />
 
-        <select className="mb-3" 
+        <select className="mb-3 edit-select" 
             onChange={(e)=> 
             setCategoria(e.target.value)}
             value={categoria}
@@ -85,11 +89,11 @@ const Dashboard = () => {
               <option value="Fantasia">Fantasia</option>
             </select>
 
-        <input type="number" className="" placeholder="Preço" onChange={(e) => setProductPrice(e.target.value)} />
+        <input type="number" className="input-edit" placeholder="Preço" onChange={(e) => setProductPrice(e.target.value)} />
 
-        <input type="text" className="" placeholder="Sinopse" onChange={(e) => setSinopseProduct(e.target.value)} />
+        <input type="text" className="input-edit" placeholder="Sinopse" onChange={(e) => setSinopseProduct(e.target.value)} />
 
-        <button className="btn btn-primary" onClick={newProducthandler}>
+        <button className="btn btn-form-edit" onClick={newProducthandler}>
           Adicionar Livro
         </button>
       </div>
