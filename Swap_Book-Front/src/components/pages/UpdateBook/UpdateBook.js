@@ -7,6 +7,7 @@ import { UserContext } from "../../UseContext/UserContext";
 import { useNavigate } from "react-router-dom";
 import FormData from "form-data";
 import { useParams } from "react-router-dom";
+import Footer from "../../Footer/Footer";
 
 
 const UpdateBook = () => {
@@ -74,7 +75,7 @@ const UpdateBook = () => {
       <Navbar2 />
       <section className="input-section">
         <form className="">
-          <h1 className="text-center"> Adicionar um Produto</h1>
+          <h1 className="text-center"> Editar um Produto</h1>
           <div className="col-12 container">
             <div className="row ">
               <div className="col-6 edit-col">
@@ -184,6 +185,7 @@ const UpdateBook = () => {
           </div>
         </form>
       </section>
+      <Navbar2/>
     </>
   );
 };

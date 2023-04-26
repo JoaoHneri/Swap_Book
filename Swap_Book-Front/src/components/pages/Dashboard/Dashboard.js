@@ -6,6 +6,7 @@ import api from "../../../Services/Api";
 import { UserContext } from "../../UseContext/UserContext";
 import { useNavigate } from "react-router-dom";
 import FormData from 'form-data'
+import Footer from "../../Footer/Footer";
 
 
 
@@ -101,7 +102,7 @@ const Dashboard = () => {
     </div>
   </form>
 </section>
-
+<Footer/>
     </>
   );
 };
