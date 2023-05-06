@@ -10,8 +10,8 @@ const BookDetails = () => {
     const [currentImage, setCurrentImage] = useState(0)
     const [response, setResponse] = useState([])
     const images = [
-        `{http://localhost:3333/${response.src}}`,
-        `{http://localhost:3333/${response.src}}`
+        `{https://api-swap.onrender.com/${response.src}}`,
+        `{https://api-swap.onrender.com/${response.src}}`
     ]
     const [searchProducts, setSearchProducts] = useState('')
     const [intProducts, setIntProducts] = useState([])
