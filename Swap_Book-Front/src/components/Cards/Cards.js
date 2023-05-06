@@ -33,7 +33,7 @@ function Cards({
             onMouseLeave={handleMouseLeave}
         >
             <img
-                src={`http://localhost:3333/${src}`}
+                src={`https://api-swap.onrender.com/${src}`}
                 id="img-card"
                 alt="Denim Jeans"
             />
