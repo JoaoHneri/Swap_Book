@@ -24,7 +24,7 @@ function MyAnnuncements() {
 
   useEffect(()=> {
     getUsersProduct()
-  })
+  },[])
 
   return (
     <div>

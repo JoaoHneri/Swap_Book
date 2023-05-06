@@ -52,7 +52,7 @@ const MyCards = ({name, price, synopsis, _id, src}) => {
             </Dropdown>
         </div>
         <img
-          src={`http://localhost:3333/${src}`}
+          src={`https://swap-book-api.onrender.com/${src}`}
           alt="Denim Jeans"
         ></img>
         <h1>{name}</h1>
