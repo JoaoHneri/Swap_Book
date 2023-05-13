@@ -35,7 +35,7 @@ function App() {
 
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [brincadeira]);
 
   useEffect(() => {
     getUserLocation();

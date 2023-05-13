@@ -24,7 +24,7 @@ function MyAnnuncements() {
 
   useEffect(()=> {
     getUsersProduct()
-  },[])
+  })
 
   return (
     <div>
@@ -39,6 +39,7 @@ function MyAnnuncements() {
       </div>
       <Footer/>
       </div>
+      
   )
 }
 
