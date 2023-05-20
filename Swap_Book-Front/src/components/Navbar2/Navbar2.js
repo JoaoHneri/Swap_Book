@@ -35,8 +35,6 @@ function Navbar2({ setSearchProducts }) {
 
     async function navigacao() {
         navigate('/')
-        await navigate('/')
-        window.location.reload(true)
     }
 
     return (
