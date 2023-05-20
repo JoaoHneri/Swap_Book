@@ -70,7 +70,8 @@ const Home = () => {
             console.log('Erro ao carregar os produtos')
         }
     }
-
+    console.log(latitude)
+    console.log(longitude)
     async function getProducts() {
         try {
             const Products = await api.get(`/product/`)

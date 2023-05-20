@@ -12,8 +12,6 @@ mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worke
 
 
 function App() {
-  const [latitude, setLatitude] = useState(0);
-  const [longitude, setLongitude] = useState(0);
   const [intProducts, setIntProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState();
   const [searchProducts, setSearchProducts] = useState("");
@@ -42,34 +40,16 @@ function App() {
     getProducts();
   }, [brincadeira]);
 
-  useEffect(() => {
-    getUserLocation();
-  }, []);
-
-  async function getUserLocation() {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-        setLatitude(latitude);
-        setLongitude(longitude);
-      },
-      (err) => {
-        console.log(err);
-      },
-      { timeout: 10000 }
-    );
-  }
-  
 
   return (<>
     <Navbar2 setSearchProducts={setSearchProducts}/>
     <Map
       initialViewState={{
-        latitude: latitude,
-        longitude: longitude,
+        latitude: -12.255232,
+        longitude: -38.9513216,
         zoom: 8,
       }}
-      style={{ width: window.innerWidth, height: "500px"}}
+      style={{ width: window.innerWidth, height: window.innerHeight}}
       mapStyle="mapbox://styles/mapbox/dark-v11"
       mapboxAccessToken="pk.eyJ1Ijoic2lsYXNtYXRvcyIsImEiOiJjbGc3ZGk1bHAwM3g1M2VwOXkzcDJocnFuIn0.65mSwnqFVa_SlKp_rPSuEw"
     >
