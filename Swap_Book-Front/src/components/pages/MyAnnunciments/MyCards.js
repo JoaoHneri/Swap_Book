@@ -42,7 +42,7 @@ const MyCards = ({name, price, synopsis, _id, src}) => {
       <div className={`${styles.cardinho} `}>
      
         <img
-          src={`${api}/${src}`}
+          src={`https://swap-backend.onrender.com/${src}`}
           alt="Denim Jeans"
         ></img>
         <div className={`${styles.continfos} `}>
