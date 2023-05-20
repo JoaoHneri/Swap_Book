@@ -10,8 +10,8 @@ const BookDetails = () => {
     const [currentImage, setCurrentImage] = useState(0)
     const [response, setResponse] = useState([])
     const images = [
-        `{${api}/${response.src}}`,
-        `{${api}/${response.src}}`
+        `{https://swap-backend.onrender.com/${response.src}}`,
+        `{https://swap-backend.onrender.com/${response.src}}`
     ]
     const [searchProducts, setSearchProducts] = useState('')
     const [intProducts, setIntProducts] = useState([])
@@ -104,7 +104,7 @@ const BookDetails = () => {
                             <div className="flex flex-col sm:flex-row">
                                 <div className="sm:w-1/3">
                                     <img
-                                        src={`${api}/${response.src}`}
+                                        src={`https://swap-backend.onrender.com/${response.src}`}
                                         alt="Book Cover"
                                         className="w-full rounded-lg shadow-lg"
                                     />
