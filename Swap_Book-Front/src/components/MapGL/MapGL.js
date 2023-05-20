@@ -4,6 +4,11 @@ import { useState, useEffect } from "react";
 import api from "../../Services/Api";
 import Cards from "../Cards/Cards";
 import Navbar2 from "../Navbar2/Navbar2";
+import ReactMapGL from "react-map-gl";
+import mapboxgl from "mapbox-gl"; // This is a dependency of react-map-gl even if you didn't explicitly install it
+
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 
 
 function App() {

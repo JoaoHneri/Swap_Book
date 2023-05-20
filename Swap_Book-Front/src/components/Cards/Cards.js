@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 import { AiOutlineInfoCircle, AiOutlineShopping } from 'react-icons/ai'
 import { MdFavoriteBorder } from 'react-icons/md'
+import api from '../../Services/Api'
 
 import './cardsStyle.css'
 
@@ -33,7 +34,7 @@ function Cards({
         
         <div className="product-tumb">
         <img
-                src={`https://swap-backend.onrender.com/${src}`}
+                src={`${api}/${src}`}
                 id="img-card"
                 alt="Denim Jeans"
             />

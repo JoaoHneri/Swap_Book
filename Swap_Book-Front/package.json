@@ -25,7 +25,8 @@
     "rsuite": "^5.32.0",
     "slick-carousel": "^1.8.1",
     "socket.io-client": "^4.6.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "worker-loader": "^3.0.8"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -42,7 +42,7 @@ const MyCards = ({name, price, synopsis, _id, src}) => {
       <div className={`${styles.cardinho} `}>
      
         <img
-          src={`http://localhost:3333/${src}`}
+          src={`${api}/${src}`}
           alt="Denim Jeans"
         ></img>
         <div className={`${styles.continfos} `}>
