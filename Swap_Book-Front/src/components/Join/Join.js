@@ -14,7 +14,7 @@ console.log(userData)
   const handleSubmit = async () => {
     const username = usernameRef.current.value
     if(!username.trim()) return
-    const socket = await io.connect('http://localhost:3333')
+    const socket = await io.connect('https://swap-book.vercel.app/')
     socket.emit('set_username', username)
     setSocket(socket)
     setChatVisibility(true)
