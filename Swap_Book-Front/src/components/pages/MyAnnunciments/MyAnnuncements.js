@@ -6,10 +6,12 @@ import Navbar2 from '../../Navbar2/Navbar2';
 import MyCards from './MyCards';
 import styles from './myCards.module.css'
 import Footer from '../../Footer/Footer';
+import Loader from '../../loading/Loader';
 
 function MyAnnuncements() {
   const [userData, setUserData] = useContext(UserContext);
   const [productsData, setProductsData] = useState([]);
+  const [loading, setLoading] = useState(false);
   
   async function getUsersProduct(){
     const usersProductData = await api.get(`/product/${userData._id}`,{
@@ -19,6 +21,7 @@ function MyAnnuncements() {
     })
     const {data} = usersProductData
     setProductsData(data)
+    setLoading(true);
     
   }
 
@@ -30,6 +33,7 @@ function MyAnnuncements() {
     <div>
       <Navbar2/>
       <h1 className='text-center'>Meus Anúncios</h1>
+      {!loading ? <Loader/> : null}
       <div className={``}>
         <div className={`${styles.container}`}>
       {productsData.map(product => (
