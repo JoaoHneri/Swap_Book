@@ -14,7 +14,7 @@ console.log(userData)
   const handleSubmit = async () => {
     const username = usernameRef.current.value
     if(!username.trim()) return
-    const socket = await io.connect('https://swap-backend.onrender.com')
+    const socket = await io.connect(`${process.env.REACT_APP_API}`)
     socket.emit('set_username', username)
     setSocket(socket)
     setChatVisibility(true)

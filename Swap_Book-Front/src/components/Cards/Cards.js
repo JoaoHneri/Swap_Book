@@ -33,7 +33,7 @@ function Cards({
         
         <div className="product-tumb">
         <img
-                src={`https://swap-backend.onrender.com/${src}`}
+                src={`${process.env.REACT_APP_API}/${src}`}
                 id="img-card"
                 alt="Denim Jeans"
             />

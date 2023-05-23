@@ -104,7 +104,7 @@ const BookDetails = () => {
                             <div className="flex flex-col sm:flex-row">
                                 <div className="sm:w-1/3">
                                     <img
-                                        src={`https://swap-backend.onrender.com/${response.src}`}
+                                        src={`${process.env.REACT_APP_API}/${response.src}`}
                                         alt="Book Cover"
                                         className="w-full rounded-lg shadow-lg"
                                     />
