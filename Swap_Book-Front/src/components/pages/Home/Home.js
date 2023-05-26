@@ -118,7 +118,7 @@ const Home = () => {
       <div className="">
         {searchProducts ? (
           filteredData ? (
-            <div className="cards d-flex">
+            <div className="cards d-flex cards-search">
               {filteredData.map((product) => (
                 <Cards
                   key={product._id}
