@@ -4,9 +4,10 @@ import { Link, useNavigate} from 'react-router-dom';
 import api from '../../Services/Api.js';
 import { UserContext } from "../UseContext/UserContext";
 import '../Login/StyleLogin.css'
-
 import banner07 from '../img/banner_02.png'
-import logos from '../img/logoFullWhite.png'
+import logos from '../img/logoFullWhite.png';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 
 const LoginPage = () => {
@@ -16,6 +17,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState('')
 
   const navigate = useNavigate() 
+  const MySwal = withReactContent(Swal)
   
   async function loginHandle(e){
 
@@ -36,8 +38,6 @@ const LoginPage = () => {
       localStorage.setItem('IsLogged', true)
       const userInfo = userData.data
       console.log(userInfo)
-
-      alert("Logado com sucesso!")
       setUserData(prevState => ({...prevState, 
         isLogged: true,
       email: userInfo.email,
@@ -46,7 +46,16 @@ const LoginPage = () => {
   }))
       navigate('/')
     }catch (err){
-      alert('Falha no Login, tente novamente! ')
+      MySwal.fire({
+        title: 'Erro!',
+        text: 'Erro no Login, tente novamente',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        didOpen: () => {
+          // `MySwal` is a subclass of `Swal` with all the same instance & static methods
+          MySwal.stopTimer()
+        },
+      })
     }
   }
   

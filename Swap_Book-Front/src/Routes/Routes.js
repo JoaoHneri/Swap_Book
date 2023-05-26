@@ -17,6 +17,7 @@ import MyAnnuncements from '../components/pages/MyAnnunciments/MyAnnuncements'
 import MapGL from '../components/MapGL/MapGL'
 import UpdateBook from '../components/pages/UpdateBook/UpdateBook'
 import UserShow from '../components/pages/UserShow/UserShow'
+import UpdateUser from '../components/pages/UpdateUser/UpdateUser'
 
 const Rotas = () => {
     const [userData, setUserData] = useContext(UserContext)
@@ -39,6 +40,12 @@ const Rotas = () => {
                     path="/dashboard"
                     element={
                         userData.isLogged ? <Dashboard /> : <Navigate to="/" />
+                    }
+                />
+                <Route
+                    path="/updateUser"
+                    element={
+                        userData.isLogged ?  <UpdateUser/> : <Navigate to="/" />
                     }
                 />
                 <Route exact path="/login" Component={LoginPage} />

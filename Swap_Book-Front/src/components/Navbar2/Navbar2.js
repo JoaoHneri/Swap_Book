@@ -39,7 +39,7 @@ function Navbar2({ setSearchProducts }) {
 
     return (
         <>
-            <Navbar bg="light" expand="lg">
+            <Navbar className="fixed-top edit-nav-pr navbar" bg="light" expand="lg">
                 <Container>
                     <Navbar.Brand
                         to="/"
@@ -121,12 +121,11 @@ function Navbar2({ setSearchProducts }) {
                                             Olá,&nbsp;
                                             {userData.isLogged ? (
                                                 <p className="edit-user-name">
-                                                    {' '}
-                                                    {` ${
+                                                    {`${
                                                         userData.name.split(
                                                             ' '
-                                                        )[0]
-                                                    }`}{' '}
+                                                        )[0]}`
+                                                    }
                                                 </p>
                                             ) : null}{' '}
                                         </Button>
@@ -137,31 +136,34 @@ function Navbar2({ setSearchProducts }) {
                                         />
 
                                         <Dropdown.Menu>
-                                            <Dropdown.Item
-                                                id="edit-tx-dr"
-                                                href="#/action-1"
-                                            >
-                                                Suas Trocas
-                                            </Dropdown.Item>
+                                           <Link id='sua-conta-edit' to="/updateUser">
                                             <Dropdown.Item
                                                 id="edit-tx-dr"
                                                 href="#/action-2"
+                                                to="/updateUser"
                                             >
+                                                
                                                 Sua Conta
                                             </Dropdown.Item>
+                                            </Link>
+                                            {userData.isLogged ? (
+                                                
+                                                <Link
+                                                id="link-edit-tx"
+                                                onClick={logoutHandler}
+                                            >
                                             <Dropdown.Item
                                                 id="edit-tx-dr"
                                                 href="#/action-3"
                                             >
-                                                {userData.isLogged ? (
-                                                    <Link
-                                                        id="link-edit-tx"
-                                                        onClick={logoutHandler}
-                                                    >
+                                                
+                                                 
                                                         Sair
-                                                    </Link>
-                                                ) : null}
+                                                    
+                                                
                                             </Dropdown.Item>
+                                            </Link>
+                                            ) : null}
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </Link>

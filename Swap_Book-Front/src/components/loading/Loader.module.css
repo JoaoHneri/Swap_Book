@@ -5,7 +5,8 @@
     align-items: center;
 }
 
-.loading{
+.loading img{
     width: 100px;
+    mix-blend-mode: color-burn;
 
 }

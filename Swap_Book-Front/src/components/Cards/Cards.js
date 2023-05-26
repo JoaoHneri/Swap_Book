@@ -13,11 +13,12 @@ function Cards({
     author,
     price,
     _id,
+    obj,
     isFavorite,
     handleFavoriteClick
 }) {
     const [hovered, setHovered] = useState(false)
-
+    const [cart, setCart] = useState([])
     function handleMouseEnter() {
         setHovered(true)
     }
@@ -25,6 +26,20 @@ function Cards({
     function handleMouseLeave() {
         setHovered(false)
     }
+
+
+     const handleClick = () =>{
+    const result = cart.find( model => model._id === obj._id );
+    if(!result){
+
+        setCart([...cart,obj])
+    }else{
+        const arrFilter = cart.filter(model => model._id === obj.id)
+        setCart(arrFilter);
+    }
+     console.log(cart)
+     
+ }
 
     return ( 
 
@@ -45,7 +60,10 @@ function Cards({
             <div className="product-price">R${price}</div>
             <div className="product-links">
               <a href=""> <AiOutlineShopping id="icon-info" /></a>
-              <a href=""><MdFavoriteBorder id="icon-info" /></a>              
+              <button className='fs-5' onClick={handleClick}>
+                {cart.some((itemCart)=> itemCart._id = obj._id) ? <AiFillHeart/> : <MdFavoriteBorder id="icon-info" />}
+                
+                </button>              
               <a href={`/details/${_id}`}> <AiOutlineInfoCircle id="icon-info" /></a>
             </div>
           </div>

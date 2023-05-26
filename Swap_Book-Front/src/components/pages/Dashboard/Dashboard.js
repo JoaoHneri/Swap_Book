@@ -9,6 +9,8 @@ import FormData from 'form-data'
 import Footer from "../../Footer/Footer";
 import { FaBook} from 'react-icons/fa';
 import ModalAvs from "../../Modal/ModalAvs";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 
 
@@ -25,6 +27,7 @@ const Dashboard = () => {
   const [src, setSrc] = useState('')
   const [state, setState] = useState('')
   const navigate = useNavigate()
+  const MySwal = withReactContent(Swal)
 
   async function newProducthandler(e){
     e.preventDefault();
@@ -38,11 +41,30 @@ const Dashboard = () => {
       formData.append('year', productYear);
       formData.append('src', src[0]);
       formData.append('state', state);
-      const response = await api.post(`${userData._id}/product`, formData, { headers: { auth: `${userData._id}` }});
-      alert("produto cadastrado com sucesso!")
+      const response = await api.post(`${userData._id}/product`, formData, 
+      { headers: { auth: `${userData._id}` }});
+      MySwal.fire({
+        title: 'Sucesso',
+        text: 'Produto Cadastrado com sucesso',
+        icon: 'success',
+        confirmButtonText: 'Ok',
+        didOpen: () => {
+          // `MySwal` is a subclass of `Swal` with all the same instance & static methods
+          MySwal.stopTimer()
+        },
+      })
       navigate('/meus_anuncios')
     }catch(err){
-      alert("falha ao adicionar Livro")
+      MySwal.fire({
+        title: 'Erro ao anunciar',
+        text: 'verifique se todos os campos estão preeenchidos',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        didOpen: () => {
+          // `MySwal` is a subclass of `Swal` with all the same instance & static methods
+          MySwal.stopTimer()
+        },
+      })
     
       
 

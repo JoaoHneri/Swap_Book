@@ -76,7 +76,7 @@ const UpdateBook = () => {
       <section className="input-section">
         <form className="">
           <h1 className="text-center"> Editar um Produto</h1>
-          <div className="col-12 container">
+          <div className="col-12 container conteudo-atualizar">
             <div className="row ">
               <div className="col-6 edit-col">
                 <label className="text-img">Insira uma Imagem:</label>

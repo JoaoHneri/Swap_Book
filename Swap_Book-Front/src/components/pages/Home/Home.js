@@ -10,12 +10,9 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../UseContext/UserContext.js";
-import CarouselCards from "../../CarouselCards/CarouselCards.js";
 import { GoLocation } from "react-icons/go";
 import "../Home/Home.css";
 import Carousel from "react-bootstrap/Carousel";
-import { Container, Row, Col, Modal } from "react-bootstrap";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FcPrevious, FcNext } from "react-icons/fc";
@@ -131,6 +128,7 @@ const Home = () => {
                   author={product.author}
                   synopsis={product.synopsis}
                   src={product.src}
+                  obj = {product}
                 />
               ))}
             </div>
@@ -169,6 +167,7 @@ const Home = () => {
                           author={product.author}
                           price={product.price}
                           synopsis={product.synopsis}
+                          obj = {product}
                         />
                       ))}
                     </div>
@@ -193,6 +192,7 @@ const Home = () => {
                     price={product.price}
                     author={product.author}
                     synopsis={product.synopsis}
+                    obj = {product}
                   />
                 ))}
               </div>
