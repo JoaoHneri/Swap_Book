@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import api from "../../Services/Api";
 import Cards from "../Cards/Cards";
 import Navbar2 from "../Navbar2/Navbar2";
+import Footer from "../Footer/Footer";
 import ReactMapGL from "react-map-gl";
 import mapboxgl from "mapbox-gl"; // This is a dependency of react-map-gl even if you didn't explicitly install it
 
@@ -94,8 +95,11 @@ function App() {
         </Popup>
       ) : null}
 
+   
     </Map>
+   
     </>
+
   );
 }
 

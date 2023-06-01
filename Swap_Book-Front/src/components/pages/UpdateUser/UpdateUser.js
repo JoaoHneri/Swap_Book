@@ -46,14 +46,36 @@ function UpdateUser() {
 
       <div className="conteudo-Up">
       {divExibida === 'informacoesPessoais' && (
-          <div>
-           <h5 className='text-center'>Meu Cadastro</h5>
-           <p>Configure seu Cadastro</p>
-           <div className="">
+        <div className="container itens-cont-up">
+          <div className='itens-up'>
+           <h5 className='tx-up'>Meu Cadastro</h5>
+           <p className='tx-p-up'>Configure seu Cadastro.</p>
+           <div className="itens-dados-up">
             <h6>Dados da conta</h6>
-            <p>Nome</p>
-            <input></input>
-            <p>Gênero</p>
+            <p id='pr-up'>Nome de Usúario</p>
+            <input className='input-up'></input>
+            <p id='pr-up'>Gênero</p>
+            <form>
+            <div className='radio-div'>
+              <label id='tm-lb'>
+                <input type="radio" class="radio-up" name="gender" value="homem"></input>
+                Homem
+              </label >
+              <label id='tm-lb'>
+                <input type="radio" class="radio-up" name="gender" value="mulher"></input>
+                Mulher
+              </label>
+              <label id='tm-lb'>
+                <input type="radio" class="radio-up" name="gender" value="outros"></input>
+                Outros
+              </label>
+            </div>
+
+            </form>
+            <p id='tp-up'>Tipo de Conta:<span id='sp-up'>Particular</span></p>
+            <button className='btn-up'> Salvar Alterações
+</button>
+          </div>
           </div>
           </div>
         )}

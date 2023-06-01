@@ -32,6 +32,21 @@ const Home = () => {
   const [CategoredProducts, setCategoredProducts] = useState([]);
   const [userData, setUserData] = useContext(UserContext);
   const [loading, setLoading] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Defina o ponto de ruptura adequado para dispositivos móveis
+    };
+
+    handleResize(); // Verificar o tamanho da tela inicialmente
+
+    window.addEventListener('resize', handleResize); // Adicionar um ouvinte de redimensionamento
+
+    return () => {
+      window.removeEventListener('resize', handleResize); // Remover o ouvinte de redimensionamento ao desmontar o componente
+    };
+  }, []);
 
   useEffect(() => {
     getUserLocation();
@@ -107,6 +122,8 @@ const Home = () => {
     setCategoredProducts(categories);
   }
 
+
+
   useEffect(() => {
     getCategoryBooks();
   }, [allBooks, category, intProducts]);
@@ -145,67 +162,74 @@ const Home = () => {
               </h2>
               <h2>{category}</h2>
 
-              <Carousel
-                className="my-carousel"
-                prevIcon={<FcPrevious />}
-                nextIcon={<FcNext />}
-              >
-                {!loading ? <Loader/> : null}
-                {CategoredProducts.reduce((rows, product, index) => {
-                  if (index % 5 === 0) rows.push([]);
-                  rows[rows.length - 1].push(product);
-                  return rows;
-                }, []).map((row, rowIndex) => (
-                  <Carousel.Item key={rowIndex}>
-                    <div className="cards text-center d-flex">
-                      {row.map((product) => (
-                        <Cards
-                          key={product._id}
-                          _id={product._id}
-                          name={product.name}
-                          src={product.src}
-                          author={product.author}
-                          price={product.price}
-                          synopsis={product.synopsis}
-                          obj = {product}
-                        />
+              <Carousel className="my-carousel" prevIcon={<FcPrevious />} nextIcon={<FcNext />}>
+                      {!loading ? <Loader /> : null}
+                      {CategoredProducts.reduce((rows, product, index) => {
+                        if (index % (isMobile ? 2 : 5) === 0) rows.push([]);
+                        rows[rows.length - 1].push(product);
+                        return rows;
+                      }, []).map((row, rowIndex) => (
+                        <Carousel.Item key={rowIndex}>
+                          <div className="cards text-center d-flex">
+                            {row.map((product) => (
+                              <Cards
+                                key={product._id}
+                                _id={product._id}
+                                name={product.name}
+                                src={product.src}
+                                author={product.author}
+                                price={product.price}
+                                synopsis={product.synopsis}
+                                obj={product}
+                              />
+                            ))}
+                          </div>
+                        </Carousel.Item>
                       ))}
-                    </div>
-                  </Carousel.Item>
-                ))}
-              </Carousel>
+            </Carousel>
             </div>
 
             <Trotes />
             <div className="container">
-              <h2 id="edit-h2">
-                Veja os Livros Próximos a <span>Você</span>
-              </h2>
-              {!loading ? <Loader/> : null}         
-              <div className="cards  d-flex">
-                {productsData.map((product) => (
-                  <Cards
-                    key={product._id}
-                    _id={product._id}
-                    name={product.name}
-                    src={product.src}
-                    price={product.price}
-                    author={product.author}
-                    synopsis={product.synopsis}
-                    obj = {product}
-                  />
-                ))}
-              </div>
-              <div className=" link_map">
-                {userData.isLogged ? (
-                  <Link id="link-tx" to="/map_products">
-                    <button className="btn_map link_map">
-                      Veja no Mapa <GoLocation id="icon-map" />
-                    </button>
-                  </Link>
-                ) : null}
-              </div>
+      <h2 id="edit-h2">
+        Veja os Livros Próximos a <span>Você</span>
+      </h2>
+      {!loading ? <Loader /> : null}
+      <Carousel className="my-carousel" prevIcon={<FcPrevious />} nextIcon={<FcNext />}>
+        {!loading ? <Loader /> : null}
+        {productsData.reduce((rows, product, index) => {
+          if (index % (isMobile ? 2 : 5) === 0) rows.push([]);
+          rows[rows.length - 1].push(product);
+          return rows;
+        }, []).map((row, rowIndex) => (
+          <Carousel.Item key={rowIndex}>
+            <div className="cards text-center d-flex">
+              {row.map((product) => (
+                <Cards
+                  key={product._id}
+                  _id={product._id}
+                  name={product.name}
+                  src={product.src}
+                  author={product.author}
+                  price={product.price}
+                  synopsis={product.synopsis}
+                  obj={product}
+                />
+              ))}
             </div>
+          </Carousel.Item>
+        ))}
+      </Carousel>
+      <div className=" link_map">
+        {userData.isLogged ? (
+          <Link id="link-tx" to="/map_products">
+            <button className="btn_map link_map">
+              Veja no Mapa <GoLocation id="icon-map" />
+            </button>
+          </Link>
+        ) : null}
+      </div>
+    </div>
             {/* <div className="text-center">
               <h2>LIVROS:</h2>
               <div className="d-flex">
