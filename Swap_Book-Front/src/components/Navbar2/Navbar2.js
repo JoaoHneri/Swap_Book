@@ -28,6 +28,7 @@ function Navbar2({ setSearchProducts }) {
         localStorage.setItem('name', '')
         localStorage.setItem('id', '')
         localStorage.removeItem('IsLogged')
+        localStorage.removeItem('favorites')
         await navigate('/')
         window.location.reload(true)
         e.preventDefault()
@@ -91,7 +92,7 @@ function Navbar2({ setSearchProducts }) {
                                 <BsChatDots className="icon-size" />{' '}
                             </Link>
 
-                            <Link className="icon">
+                            <Link to="/favoritos" className="icon">
                                 <MdFavoriteBorder className="icon-size" />
                             </Link>
                             {userData.isLogged ? (
