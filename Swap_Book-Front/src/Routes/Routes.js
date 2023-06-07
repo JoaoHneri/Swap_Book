@@ -3,7 +3,8 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
-    Navigate
+    Navigate,
+    useLocation
 } from 'react-router-dom'
 import Home from '../components/pages/Home/Home'
 import Dashboard from '../components/pages/Dashboard/Dashboard'
@@ -19,12 +20,26 @@ import UpdateBook from '../components/pages/UpdateBook/UpdateBook'
 import UserShow from '../components/pages/UserShow/UserShow'
 import UpdateUser from '../components/pages/UpdateUser/UpdateUser'
 import Favoritos from '../components/pages/Favoritos/Favoritos'
+import NewPassword from '../components/Login/NewPassword'
 import Categories from '../components/pages/categories/Categories'
+import { useEffect } from 'react'
 
+
+
+function ToTop(){
+    const {pathname} = useLocation();
+    useEffect(()=>{
+        window.scrollTo(0,0);
+
+    },[pathname]);
+    return null;
+}
 const Rotas = () => {
+    
     const [userData, setUserData] = useContext(UserContext)
     return (
         <Router>
+            <ToTop/>
             <Routes>
                 <Route exact path="/" Component={Home} />
                 <Route
@@ -44,6 +59,7 @@ const Rotas = () => {
                         userData.isLogged ? <Dashboard /> : <Navigate to="/" />
                     }
                 />
+                
                 <Route
                     path="/updateUser"
                     element={
@@ -60,6 +76,7 @@ const Rotas = () => {
                  <Route exact path="/favoritos" Component={Favoritos} />
                 <Route exact path="/chat" Component={ChatPage} />
                 <Route exact path="/registrar" Component={RegisterPage} />
+                <Route exact path="/newpassword" Component={NewPassword} />
                 <Route
                     path="/map_products"
                     element={
@@ -72,7 +89,7 @@ const Rotas = () => {
                         userData.isLogged ? <UpdateBook /> : <Navigate to="/" />
                     }
                 />
-                <Route exact path="/categorias" Component={Categories} />
+                 <Route exact path="/categorias" Component={Categories} />
             </Routes>
         </Router>
     )

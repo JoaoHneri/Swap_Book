@@ -12,9 +12,7 @@ import ModalAvs from "../../Modal/ModalAvs";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import InputMask from 'react-input-mask';
-
 const Dashboard = () => {
-
   const [userData, setUserData] = useContext(UserContext);
   const [productName, setProductName] = useState('')
   const [productYear, setProductYear] = useState('')
@@ -29,21 +27,14 @@ const Dashboard = () => {
 
   const handlePriceChange = (e) => {
     const inputValue = e.target.value;
-
-    // Remove qualquer caracter não numérico do valor
     const numericValue = inputValue.replace(/[^\d]/g, '');
-
-    // Verifica se o valor tem 2 ou 3 dígitos
     if (numericValue.length === 4 || numericValue.length === 5) {
-      // Adiciona a vírgula para separar os centavos
-      const formattedValue = numericValue.slice(0, -2) + ',' + numericValue.slice(-2);
-
+      const formattedValue = numericValue.slice(0, -2) + '.' + numericValue.slice(-2);
       setProductPrice(formattedValue);
     } else {
       setProductPrice(numericValue);
     }
   };
-
   async function newProducthandler(e){
     e.preventDefault();
     try{
@@ -64,7 +55,6 @@ const Dashboard = () => {
         icon: 'success',
         confirmButtonText: 'Ok',
         didOpen: () => {
-          // `MySwal` is a subclass of `Swal` with all the same instance & static methods
           MySwal.stopTimer()
         },
       })
@@ -76,16 +66,12 @@ const Dashboard = () => {
         icon: 'error',
         confirmButtonText: 'Ok',
         didOpen: () => {
-          // `MySwal` is a subclass of `Swal` with all the same instance & static methods
+         
           MySwal.stopTimer()
         },
       })
-    
-      
-
     }
   }
-
   return (
     <>
       <Navbar2 />
@@ -95,12 +81,7 @@ const Dashboard = () => {
           <form>
           <div className="cont-03">
             <h3 className="text-center">Adicione seus Livros</h3>
-            <div className="col-input-00">
-            <input type="checkbox" id="cliente-pj" name="cliente" value="pj" />
-            <label for="cliente-pj"><p>Cliente PJ</p></label>
-            <input type="checkbox" id="cliente-fisico" name="cliente" value="fisico" />
-            <label for="cliente-fisico"><p>Cliente Físico</p></label>
-            </div>
+           
             <div className="col-input-01">
             <input type="text" className="form-control input-edit" onChange={(e) => setProductName(e.target.value)} placeholder="Nome do Livro" value={productName} />
             <input type="text" className="form-control input-edit" placeholder="Autor" value={autorProduct} onChange={(e) => setAutorProduct(e.target.value)} />
@@ -117,7 +98,6 @@ const Dashboard = () => {
         value={productPrice}
         onChange={handlePriceChange}
       />
-
             <select className="form-control edit-select" 
             onChange={(e)=> 
             setCategoria(e.target.value)}
@@ -150,10 +130,8 @@ const Dashboard = () => {
               <option value="Bom">Bom</option>
               <option value="Regular">Regular</option>
               <option value="Ruim">Ruim</option>
-              
             </select>
             </div>
-            
         <div className="col-input-04">
                  <div className="input-wrapper">
                   <input  type="file" multiple onChange={(e) => setSrc(e.target.files)} />
@@ -173,11 +151,9 @@ const Dashboard = () => {
         </button>
             </div>
           </div>
-          
           </form>
         </div>
       </div>
-
       <Footer/>
     </>
   );
