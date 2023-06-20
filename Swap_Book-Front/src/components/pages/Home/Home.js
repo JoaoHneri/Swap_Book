@@ -147,6 +147,8 @@ const Home = () => {
                   synopsis={product.synopsis}
                   src={product.src}
                   obj = {product}
+                  allowTrade={product.allowTrade}
+                  showOnMap={product.showOnMap}
                 />
               ))}
             </div>
@@ -182,6 +184,7 @@ const Home = () => {
                                 price={product.price}
                                 synopsis={product.synopsis}
                                 obj={product}
+                                allowTrade={product.allowTrade}
                               />
                             ))}
                           </div>
@@ -191,6 +194,18 @@ const Home = () => {
             </Carousel>
             <div  className="container btn-run-filter"><Link id="link-filter" to="/categorias"><div className="btn-run-filter2"><p>Veja mais</p><BsArrowRightShort id="icon-filter"/></div></Link></div>
             </div>
+
+
+            <section className="section">
+      <div className="container">
+        <h1 className="section-title"> Leitura Sustentável</h1>
+        <p className="section-slogan">Troque, compre e sustente! Faça parte da Swap Book e promova a sustentabilidade por meio da leitura.<br/>Descubra livros usados de qualidade e contribua para um futuro mais verde. </p>
+       <Link to="/sustainability">Saiba mais</Link>
+      </div>
+    </section>
+
+
+    
             <Trotes />
             <div className="container">
       <h2 id="edit-h2">
@@ -215,6 +230,7 @@ const Home = () => {
                   price={product.price}
                   synopsis={product.synopsis}
                   obj={product}
+                  allowTrade={product.allowTrade}
                 />
               ))}
             </div>

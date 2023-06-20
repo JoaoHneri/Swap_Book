@@ -22,6 +22,8 @@ import UpdateUser from '../components/pages/UpdateUser/UpdateUser'
 import Favoritos from '../components/pages/Favoritos/Favoritos'
 import NewPassword from '../components/Login/NewPassword'
 import Categories from '../components/pages/categories/Categories'
+import Sustainability from '../components/pages/Sustainability/Sustainability'
+import BookModal from '../components/BookModal/BookModal'
 import { useEffect } from 'react'
 
 
@@ -68,6 +70,7 @@ const Rotas = () => {
                 />
                 
                 <Route exact path="/login" Component={LoginPage} />
+
                 <Route
                     exact
                     path="/user_presentation/:_id"
@@ -76,6 +79,7 @@ const Rotas = () => {
                  <Route exact path="/favoritos" Component={Favoritos} />
                 <Route exact path="/chat" Component={ChatPage} />
                 <Route exact path="/registrar" Component={RegisterPage} />
+                <Route exact path="/sustainability" Component={Sustainability} />
                 <Route exact path="/newpassword" Component={NewPassword} />
                 <Route
                     path="/map_products"
