@@ -68,10 +68,11 @@ export default function Chat({socket}) {
   
   useEffect(() => {
     menssagesUsers();
-  }, [chatID]);
+  }, [chatMenssages]);
 
   
-  async function iniciateChat() {
+  async function iniciateChat(e) {
+    e.preventDefault();
     fetchData();
     if (bookSala === id) {
       try {
