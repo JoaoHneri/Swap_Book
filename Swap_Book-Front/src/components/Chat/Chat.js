@@ -25,6 +25,7 @@ export default function Chat({socket}) {
   const [chatID, setChatId] = useState("");
   const [chatMenssages, setChatMenssages] = useState([]);
   const [bookSala, setBookSala] = useState('');
+  const [dependencies, setDependencies] = useState(0)
 
   const receiverID = productInfos.user;
   console.log(chatMenssages.messages)
@@ -68,7 +69,7 @@ export default function Chat({socket}) {
   
   useEffect(() => {
     menssagesUsers();
-  }, [chatMenssages]);
+  }, [receiverID, dependencies]);
 
   
   async function iniciateChat(e) {
@@ -80,6 +81,8 @@ export default function Chat({socket}) {
           userId: userData._id,
           content: menssage,
         });
+
+        setDependencies(dependencies+1);
   
         const updatedChat = response.data;
         // Faça algo com o chat atualizado, se necessário
