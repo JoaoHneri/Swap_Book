@@ -77,7 +77,7 @@ const Rotas = () => {
                     Component={UserShow}
                 />
                  <Route exact path="/favoritos" Component={Favoritos} />
-                <Route exact path="/chat" Component={ChatPage} />
+                <Route exact path="/chat/:id" Component={ChatPage} />
                 <Route exact path="/registrar" Component={RegisterPage} />
                 <Route exact path="/sustainability" Component={Sustainability} />
                 <Route exact path="/newpassword" Component={NewPassword} />
