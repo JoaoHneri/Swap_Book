@@ -87,7 +87,7 @@ function Navbar2({ setSearchProducts }) {
                         </div>
 
                         <Nav className="align-icons">
-                            <Link to="/chat" className="icon">
+                            <Link to="/chatNotifications" className="icon">
                                 {' '}
                                 <BsChatDots className="icon-size" />{' '}
                             </Link>

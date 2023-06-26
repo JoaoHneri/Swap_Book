@@ -1,36 +1,34 @@
-import React, {useRef, useState, useEffect, useContext} from 'react'
-import {Input} from '@mui/material'
+import React, { useRef, useState, useEffect, useContext } from 'react';
+import { Input } from '@mui/material';
 import { FaTelegramPlane } from 'react-icons/fa';
-import style from './Chat.module.css'
-import NavBar from '../Navbar2/Navbar2'
+import './Chat.css';
+import NavBar from '../Navbar2/Navbar2';
 import Footer from '../Footer/Footer';
 import api from '../../Services/Api';
 import { useParams } from 'react-router-dom';
 import { UserContext } from '../UseContext/UserContext';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import Navbar2 from '../Navbar2/Navbar2';
 
-
-export default function Chat({socket}) {
+export default function Chat() {
   const [userData, setUserData] = useContext(UserContext);
-  const {id} = useParams();
-  const bottomRef = useRef()
-  const messageRef = useRef()
-  const [messageList, setMessageList] = useState([])
+  const { id } = useParams();
+  const bottomRef = useRef();
+  const messageRef = useRef();
+  const [messageList, setMessageList] = useState([]);
   const [productInfos, setProductInfos] = useState([]);
   const [User, setUser] = useState([]);
-  const[menssage, setMenssage] = useState("");
+  const [menssage, setMenssage] = useState('');
   const [messages, setMessages] = useState([]);
   const [senderId, setSenderId] = useState(userData._id);
-  const [receverId, setReceiverId] = useState(productInfos.user);
-  const [chatID, setChatId] = useState("");
+  const [receverId, setReceiverId] = useState('');
+  const [chatID, setChatId] = useState('');
   const [chatMenssages, setChatMenssages] = useState([]);
   const [bookSala, setBookSala] = useState('');
-  const [dependencies, setDependencies] = useState(0)
+  const [dependencies, setDependencies] = useState(0);
 
   const receiverID = productInfos.user;
-  console.log(chatMenssages.messages)
-
-
+  console.log(chatMenssages.messages);
 
   const fetchData = async () => {
     try {
@@ -49,30 +47,28 @@ export default function Chat({socket}) {
       console.log('Erro ao carregar informações');
     }
   };
-  
+
   useEffect(() => {
     fetchData();
   }, [id, receiverID, userData._id]);
 
-
-
-  console.log(bookSala)  
+  console.log(bookSala);
   const menssagesUsers = async () => {
     try {
       const MenssagesProds = await api.get(`/conversations/find/${id}/${userData._id}/${receiverID}`);
       const { data } = MenssagesProds;
       setChatMenssages(data);
+      bottomRef.current.scrollTop = bottomRef.current.scrollHeight;
     } catch (error) {
       console.log('Erro ao carregar menssagens');
     }
   };
-  
+
   useEffect(() => {
     menssagesUsers();
   }, [receiverID, dependencies]);
 
-  
-  async function iniciateChat(e) {
+  async function initiateChat(e) {
     e.preventDefault();
     fetchData();
     if (bookSala === id) {
@@ -82,12 +78,13 @@ export default function Chat({socket}) {
           content: menssage,
         });
 
-        setDependencies(dependencies+1);
-  
+        setDependencies(dependencies + 1);
+
         const updatedChat = response.data;
         // Faça algo com o chat atualizado, se necessário
-  
+
         // Limpe o estado ou faça outras operações necessárias
+        setMenssage('');
       } catch (error) {
         console.error('Erro ao adicionar mensagem ao chat:', error);
         // Lide com o erro, se necessário
@@ -102,43 +99,58 @@ export default function Chat({socket}) {
         });
         const { data } = chat;
         setUser(data);
+        setMenssage('');
       } catch (err) {
         console.log('Erro ao carregar informações');
       }
     }
   }
-  
+
+  useEffect(() => {
+    bottomRef.current.scrollTop = bottomRef.current.scrollHeight;
+  }, [chatMenssages]);
 
   return (
     <div>
-      <NavBar/>
-      <div className='mt-10'>2</div>
-      <div className='mt-10'>2</div>
-      <Container className="chat-container">
-      <div className="chat-messages">
-        {chatMenssages.messages?
-        chatMenssages.messages.map((message) => (
-          <div
-            key={message._id}
-            className={`message ${message.userId === userData._id ? 'sent' : 'received'}`}
-          >
-            {message.content}
-          </div>
-        )): <div className='chat-messages mt-5'><h1 className=''>Inicie uma Conversa</h1></div>}
+      <Navbar2/>
+      <div className='divChat'>
+      <Container className='chat-container'>
+        <div className='chat-messages' ref={bottomRef}>
+          {chatMenssages.messages ? (
+            chatMenssages.messages.map((message) => (
+              <div
+                key={message._id}
+                className={`message ${message.userId === userData._id ? 'sent' : 'received'}`}
+              >
+                <div
+                  className={`message-content ${
+                    message.userId === userData._id ? 'sent' : 'received'
+                  }`}
+                >
+                  {message.content}
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className='chat-messages mt-5'>
+              <h1 className=''>Inicie uma Conversa</h1>
+            </div>
+          )}
+        </div>
+        <Form className='chat-input'>
+          <Form.Control
+            type='text'
+            placeholder='Digite sua mensagem...'
+            value={menssage}
+            onChange={(e) => setMenssage(e.target.value)}
+          />
+          <Button variant='primary' type='submit' onClick={initiateChat}>
+            Enviar
+          </Button>
+        </Form>
+      </Container>
       </div>
-      <Form className="chat-input">
-        <Form.Control
-          type="text"
-          placeholder="Digite sua mensagem..."
-          value={menssage}
-          onChange={(e => setMenssage(e.target.value))}
-        />
-        <Button variant="primary" type="submit" onClick={iniciateChat}>
-          Enviar
-        </Button>
-      </Form>
-    </Container>
       <Footer/>
     </div>
-  )
+  );
 }

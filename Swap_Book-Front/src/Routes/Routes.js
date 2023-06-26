@@ -25,6 +25,7 @@ import Categories from '../components/pages/categories/Categories'
 import Sustainability from '../components/pages/Sustainability/Sustainability'
 import BookModal from '../components/BookModal/BookModal'
 import { useEffect } from 'react'
+import ChatNotify from '../components/pages/ChatNotify/ChatNotify'
 
 
 
@@ -94,6 +95,13 @@ const Rotas = () => {
                     }
                 />
                  <Route exact path="/categorias" Component={Categories} />
+
+                 <Route
+                    path="/chatNotifications"
+                    element={
+                        userData.isLogged ? <ChatNotify /> : <Navigate to="/" />
+                    }
+                />
             </Routes>
         </Router>
     )
