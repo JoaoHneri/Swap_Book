@@ -132,11 +132,10 @@ const Home = () => {
   return (
     <div>
       <Navbar2 setSearchProducts={setSearchProducts} />
-
       <div className="">
         {searchProducts ? (
           filteredData ? (
-            <div className="cards d-flex cards-search">
+            <div className="container cards d-flex flex-wrap cards-search">
               {filteredData.map((product) => (
                 <Cards
                   key={product._id}
