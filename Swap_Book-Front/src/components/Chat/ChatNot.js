@@ -55,7 +55,7 @@ export default function Chat({ id, sender, receiver }) {
       bottomRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
   
       // Chama a função novamente após um intervalo de tempo (por exemplo, 1 segundo)
-      setTimeout(menssagesUsers, 1000); // Ajuste o intervalo conforme necessário
+      setTimeout(menssagesUsers, 500); // Ajuste o intervalo conforme necessário
     } catch (error) {
       console.log("Erro ao carregar mensagens");
     }
