@@ -60,13 +60,22 @@ export default function Chat() {
       setChatMenssages(data);
       bottomRef.current.scrollTop = bottomRef.current.scrollHeight;
     } catch (error) {
-      console.log('Erro ao carregar menssagens');
+      console.log('Erro ao carregar mensagens');
     }
   };
-
+  
   useEffect(() => {
     menssagesUsers();
+  
+    const interval = setInterval(() => {
+      menssagesUsers();
+    }, 100); // Define o intervalo de tempo em milissegundos (por exemplo, 5000ms = 5 segundos)
+  
+    return () => {
+      clearInterval(interval); // Limpa o intervalo quando o componente é desmontado
+    };
   }, [receiverID, dependencies]);
+  
 
   async function initiateChat(e) {
     e.preventDefault();

@@ -52,10 +52,10 @@ export default function Chat({ id, sender, receiver }) {
       const { data } = MenssagesProds;
       setChatMenssages(data);
       // Role o scroll para o final
-      bottomRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+
   
       // Chama a função novamente após um intervalo de tempo (por exemplo, 1 segundo)
-      setTimeout(menssagesUsers, 500); // Ajuste o intervalo conforme necessário
+      setTimeout(menssagesUsers, 100); // Ajuste o intervalo conforme necessário
     } catch (error) {
       console.log("Erro ao carregar mensagens");
     }

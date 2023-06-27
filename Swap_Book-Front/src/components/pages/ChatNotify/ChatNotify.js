@@ -33,14 +33,13 @@ const ChatNotify = () => {
     <>
       <Navbar2 />
       <div className="NotificationsChats">
-        <div className="flex flex-col h-screen bg-gray-100 mt-5 screenNotify">
+        <div className="flex flex-col bg-gray-100 mt-5 screenNotify">
           <div className="flex-none bg-white shadow-md px-4 py-3 flex items-center justify-between border-b">
-            <h1 className="text-lg font-bold">Notifications and Active Chats</h1>
-            <button className="rounded-full bg-gray-200 px-3 py-1 text-sm font-medium text-gray-700">
-              Mark All Read
-            </button>
+            <h1 className="text-lg font-bold">
+              Mensagens Para Você
+            </h1>
           </div>
-          <div className="flex-1 overflow-y-auto px-4 py-2">
+          <div className="flex-1 px-4 py-2">
             {messages.map((message) => (
               <div
                 key={message._id}
@@ -62,18 +61,23 @@ const ChatNotify = () => {
                     </p>
                   </div>
                 </div>
-                <p className="text-sm font-medium text-gray-500">{message.timestamp}</p>
+                <p className="text-sm font-medium text-gray-500">
+                  {message.timestamp}
+                </p>
               </div>
             ))}
           </div>
         </div>
-        {selectedMessage && (
-          <ChatNot
-            id={selectedMessage.idProduct}
-            sender={selectedMessage.sender._id}
-            receiver={selectedMessage.receiver._id}
-          />
-        )}
+        <div>
+          {selectedMessage && (
+            <ChatNot
+              id={selectedMessage.idProduct}
+              sender={selectedMessage.sender._id}
+              receiver={selectedMessage.receiver._id}
+              key={selectedMessage._id} // Adicione essa linha para forçar a recriação do componente ChatNot
+            />
+          )}
+        </div>
       </div>
       <Footer />
     </>
