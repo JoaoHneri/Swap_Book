@@ -49,7 +49,7 @@ const MyCards = ({name, author, price, synopsis, _id, src, createdAt}) => {
         <Dropdown.Item id='drop-edit2' icon={<EditIcon id='icon-edit'/>}></Dropdown.Item>
       </Link>
     </Dropdown>
-    <img src={`http://localhost:3333/${src}`} alt="Imagem do livro" className="book-image" />
+    <img src={`${process.env.REACT_APP_API}/${src}`} alt="Imagem do livro" className="book-image" />
     <div className="card-content">
       <h2 className="book-title">{name}</h2>
       <p className="book-synopsis">{synopsis}</p>

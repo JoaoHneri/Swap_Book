@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+.book-details-container {
+  min-height: calc(100vh - 100px); /* Altura mínima para o contêiner */
+}
 .edit-mgt{
     margin-top: 5rem;
 }

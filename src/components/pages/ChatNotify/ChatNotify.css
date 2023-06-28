@@ -4,9 +4,29 @@
     
 }
 
+.contentChats{
+    border-right: 2px solid #c7c2c2;
+    border-radius: 8px;
+}
+
 .screenNotify{
     width: 650px;
 }
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .content {
+    flex: 1;
+  }
+  
+  .Footer {
+    margin-top: auto;
+  }
+  
 
 @media (max-width: 768px) {
     .screenNotify {
@@ -19,6 +39,12 @@
         height: 1200px;
         
     }
+    .contentChats{
+        border-right: 0px;
+        border-bottom: 2px solid #c7c2c2;
+        border-radius: 8px;
+    }
+    
     .screenNotify{
         width: 100%;
     }
