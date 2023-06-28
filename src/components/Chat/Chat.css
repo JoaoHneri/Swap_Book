@@ -1,6 +1,8 @@
 /* Chat.module.css */
 .divChat{
-  margin-top: 100px;
+  border: 1px solid #cdcdcd;
+  border-radius: 50px;
+  margin-top: 80px;
 }
 .chat-container {
   display: flex;
@@ -8,17 +10,20 @@
   height: 70vh;
   width: 40vw;
   padding: 20px;
+  
 }
 
 .chat-messages {
   flex: 1;
   overflow-y: auto;
+  
 }
 
 .message {
   display: flex;
   align-items: flex-end;
   margin-bottom: 10px;
+  
 }
 
 .message.sent {

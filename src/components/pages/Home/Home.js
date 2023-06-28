@@ -11,21 +11,19 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../UseContext/UserContext.js";
 import { GoLocation } from "react-icons/go";
-import {BsBook, BsArrowRightShort} from "react-icons/bs"
+import { BsBook, BsArrowRightShort } from "react-icons/bs";
 import "../Home/Home.css";
 import Carousel from "react-bootstrap/Carousel";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FcPrevious, FcNext } from "react-icons/fc";
 import Loader from "../../loading/Loader.js";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-
-
+import { MdLocationOn } from "react-icons/md";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Home = () => {
   const [index, setIndex] = useState(0);
-
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
   const [productsData, setProductsData] = useState([]);
@@ -38,30 +36,34 @@ const Home = () => {
   const [userData, setUserData] = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [usedBooks, setUsedBooks] = useState([]);
+
   useEffect(() => {
     AOS.init(); // Inicialize o AOS
   }, []);
- 
+
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); 
+      setIsMobile(window.innerWidth <= 768);
     };
 
-    handleResize(); 
+    handleResize();
 
-    window.addEventListener('resize', handleResize); 
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize); 
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   useEffect(() => {
     getUserLocation();
   }, []);
+
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
+
   async function getUserLocation() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -92,7 +94,7 @@ const Home = () => {
       console.log("Erro ao carregar os produtos");
     }
   }
-  
+
   async function getProducts() {
     try {
       const Products = await api.get(`/product/`);
@@ -129,8 +131,6 @@ const Home = () => {
     setCategoredProducts(categories);
   }
 
-
-
   useEffect(() => {
     getCategoryBooks();
   }, [allBooks, category, intProducts]);
@@ -142,7 +142,6 @@ const Home = () => {
         {searchProducts ? (
           filteredData ? (
             <div className="container cards d-flex flex-wrap cards-search">
-             
               {filteredData.map((product) => (
                 <Cards
                   key={product._id}
@@ -152,13 +151,12 @@ const Home = () => {
                   author={product.author}
                   synopsis={product.synopsis}
                   src={product.src}
-                  obj = {product}
+                  obj={product}
                   allowTrade={product.allowTrade}
                   showOnMap={product.showOnMap}
                 />
               ))}
-          
-            </div>           
+            </div>
           ) : (
             "Produto não Encontrado"
           )
@@ -167,91 +165,183 @@ const Home = () => {
             <CarouselFadeExample />
             <Categorias setCategory={setCategory} />
             <div className="container">
+              {category && (
+                <>
+                  <h2 data-aos="fade-right" id="edit-h2">
+                    {category}
+                  </h2>
+
+                  <Carousel
+                    className="my-carousel"
+                    prevIcon={<FcPrevious />}
+                    nextIcon={<FcNext />}
+                  >
+                    {!loading ? <Loader /> : null}
+                    {CategoredProducts.reduce((rows, product, index) => {
+                      if (index % (isMobile ? 2 : 5) === 0) rows.push([]);
+                      rows[rows.length - 1].push(product);
+                      return rows;
+                    }, []).map((row, rowIndex) => (
+                      <Carousel.Item key={rowIndex}>
+                        <div
+                          data-aos="fade-up"
+                          className="cards text-center d-flex"
+                        >
+                          {row.map((product) => (
+                            <Cards
+                              key={product._id}
+                              _id={product._id}
+                              name={product.name}
+                              src={product.src}
+                              author={product.author}
+                              price={product.price}
+                              synopsis={product.synopsis}
+                              obj={product}
+                              allowTrade={product.allowTrade}
+                            />
+                          ))}
+                        </div>
+                      </Carousel.Item>
+                    ))}
+                  </Carousel>
+
+                  <div className="container btn-run-filter">
+                    <Link id="link-filter" to="/filter">
+                      <div className="btn-run-filter2">
+                        <p>Veja mais</p>
+                        <BsArrowRightShort id="icon-filter" />
+                      </div>
+                    </Link>
+                  </div>
+                </>
+              )}
+            </div>
+
+            <div className="container">
               <h2 data-aos="fade-right" id="edit-h2">
                 Livros <span>Usados</span>
               </h2>
-              <h2>{category}</h2>
+              <Carousel
+                className="my-carousel"
+                prevIcon={<FcPrevious />}
+                nextIcon={<FcNext />}
+              >
+                {!loading ? <Loader /> : null}
+                {intProducts
+                  .reduce((rows, product, index) => {
+                    if (index % (isMobile ? 2 : 5) === 0) rows.push([]);
+                    rows[rows.length - 1].push(product);
+                    return rows;
+                  }, [])
+                  .map((row, rowIndex) => (
+                    <Carousel.Item key={rowIndex}>
+                      <div
+                        data-aos="fade-up"
+                        className="cards text-center d-flex"
+                      >
+                        {row.map((product) => (
+                          <Cards
+                            key={product._id}
+                            _id={product._id}
+                            name={product.name}
+                            src={product.src}
+                            author={product.author}
+                            price={product.price}
+                            synopsis={product.synopsis}
+                            obj={product}
+                            allowTrade={product.allowTrade}
+                          />
+                        ))}
+                      </div>
+                    </Carousel.Item>
+                  ))}
+              </Carousel>
 
-              <Carousel className="my-carousel" prevIcon={<FcPrevious />} nextIcon={<FcNext />}>
-                      {!loading ? <Loader /> : null}
-                      {CategoredProducts.reduce((rows, product, index) => {
-                        if (index % (isMobile ? 2 : 5) === 0) rows.push([]);
-                        rows[rows.length - 1].push(product);
-                        return rows;
-                      }, []).map((row, rowIndex) => (
-                        <Carousel.Item key={rowIndex}>
-                         
-                          <div data-aos="fade-up" className="cards text-center d-flex">
-                            {row.map((product) => (
-                              <Cards
-                                key={product._id}
-                                _id={product._id}
-                                name={product.name}
-                                src={product.src}
-                                author={product.author}
-                                price={product.price}
-                                synopsis={product.synopsis}
-                                obj={product}
-                                allowTrade={product.allowTrade}
-                              />
-                            ))}
-                          </div>
-                     
-                       
-                        </Carousel.Item>
-                      ))}
-            </Carousel>
-            <div  className="container btn-run-filter"><Link id="link-filter" to="/filter"><div className="btn-run-filter2"><p>Veja mais</p><BsArrowRightShort id="icon-filter"/></div></Link></div>
+              <div className="container btn-run-filter">
+                <Link id="link-filter" to="/filter">
+                  <div className="btn-run-filter2">
+                    <p>Veja mais</p>
+                    <BsArrowRightShort id="icon-filter" />
+                  </div>
+                </Link>
+              </div>
             </div>
 
-    
             <Trotes />
             <div className="container">
-      <h2 data-aos="fade-right" id="edit-h2">
-        Veja os Livros Próximos a <span>Você</span>
-      </h2>
-      {!loading ? <Loader /> : null}
-      <Carousel className="my-carousel" prevIcon={<FcPrevious />} nextIcon={<FcNext />}>
-        {productsData.reduce((rows, product, index) => {
-          if (index % (isMobile ? 2 : 5) === 0) rows.push([]);
-          rows[rows.length - 1].push(product);
-          return rows;
-        }, []).map((row, rowIndex) => (
-          <Carousel.Item key={rowIndex}>
-            <div  data-aos="fade-right" className="cards text-center d-flex">
-              {row.map((product) => (
-                <Cards
-                  key={product._id}
-                  _id={product._id}
-                  name={product.name}
-                  src={product.src}
-                  author={product.author}
-                  price={product.price}
-                  synopsis={product.synopsis}
-                  obj={product}
-                  allowTrade={product.allowTrade}
-                />
-              ))}
+              <h2 data-aos="fade-right" id="edit-h2">
+                Veja os Livros Próximos a <span>Você</span>
+              </h2>
+              {!loading ? <Loader /> : null}
+              <Carousel
+                className="my-carousel"
+                prevIcon={<FcPrevious />}
+                nextIcon={<FcNext />}
+              >
+                {productsData.length === 0 ? (
+                  <div className="col-not-location">
+                    <MdLocationOn id="icon-not-location" />
+                    <p>
+                      Habilite a localização para ver os livros próximos a você
+                    </p>
+                  </div>
+                ) : (
+                  productsData
+                    .reduce((rows, product, index) => {
+                      if (index % (isMobile ? 2 : 5) === 0) rows.push([]);
+                      rows[rows.length - 1].push(product);
+                      return rows;
+                    }, [])
+                    .map((row, rowIndex) => (
+                      <Carousel.Item key={rowIndex}>
+                        <div
+                          data-aos="fade-right"
+                          className="cards text-center d-flex"
+                        >
+                          {row.map((product) => (
+                            <Cards
+                              key={product._id}
+                              _id={product._id}
+                              name={product.name}
+                              src={product.src}
+                              author={product.author}
+                              price={product.price}
+                              synopsis={product.synopsis}
+                              obj={product}
+                              allowTrade={product.allowTrade}
+                            />
+                          ))}
+                        </div>
+                      </Carousel.Item>
+                    ))
+                )}
+              </Carousel>
+              <div className="container btn-run-filter">
+                <Link id="link-filter" to="/filter">
+                  <div className="btn-run-filter2">
+                    <p>Veja mais</p>
+                    <BsArrowRightShort id="icon-filter" />
+                  </div>
+                </Link>
+              </div>
+              <div className=" link_map">
+                {userData.isLogged ? (
+                  <Link id="link-tx" to="/map">
+                    <GoLocation id="icon-not-location" />
+                    <p>Ver Todos</p>
+                  </Link>
+                ) : (
+                  <Link id="link-tx" to="/login">
+                    <GoLocation id="icon-not-location" />
+                    <p>Ver Todos</p>
+                  </Link>
+                )}
+              </div>
             </div>
-          </Carousel.Item>
-        ))}
-      </Carousel>
-      <div  className="container btn-run-filter"><Link id="link-filter" to="/filter"><div className="btn-run-filter2"><p>Veja mais</p><BsArrowRightShort id="icon-filter"/></div></Link></div>
-      <div className=" link_map">
-        {userData.isLogged ? (
-          <Link id="link-tx" to="/map_products">
-            <button className="btn_map link_map">
-              Veja no Mapa <GoLocation id="icon-map" />
-            </button>
-          </Link>
-        ) : null}
-      </div>
-    </div>
+            <Footer />
           </div>
         )}
       </div>
-
-      <Footer />
     </div>
   );
 };

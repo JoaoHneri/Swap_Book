@@ -59,7 +59,7 @@ function App() {
         longitude: -38.9513216,
         zoom: 12,
       }}
-      style={{ width: window.innerWidth, height: "500px"}}
+      style={{ width: window.innerWidth, height: window.innerHeight}}
       mapStyle="mapbox://styles/mapbox/dark-v11"
       mapboxAccessToken="pk.eyJ1Ijoic2lsYXNtYXRvcyIsImEiOiJjbGc3ZGk1bHAwM3g1M2VwOXkzcDJocnFuIn0.65mSwnqFVa_SlKp_rPSuEw"
     >

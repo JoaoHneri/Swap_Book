@@ -53,19 +53,16 @@ export default function Chat({ id, sender, receiver }) {
       setChatMenssages(data);
       // Role o scroll para o final
 
-  
       // Chama a função novamente após um intervalo de tempo (por exemplo, 1 segundo)
       setTimeout(menssagesUsers, 100); // Ajuste o intervalo conforme necessário
     } catch (error) {
       console.log("Erro ao carregar mensagens");
     }
   };
-  
+
   useEffect(() => {
     menssagesUsers();
   }, []);
-  
-  
 
   async function initiateChat(e) {
     e.preventDefault();
@@ -109,28 +106,24 @@ export default function Chat({ id, sender, receiver }) {
       <div className="divChat">
         <Container className="chat-container">
           <div className="chat-messages">
-            {chatMenssages.messages ? (
-              chatMenssages.messages.map((message) => (
-                <div
-                  key={message._id}
-                  className={`message ${
-                    message.userId === userData._id ? "sent" : "received"
-                  }`}
-                >
+            {chatMenssages.messages
+              ? chatMenssages.messages.map((message) => (
                   <div
-                    className={`message-content ${
+                    key={message._id}
+                    className={`message ${
                       message.userId === userData._id ? "sent" : "received"
                     }`}
                   >
-                    {message.content}
+                    <div
+                      className={`message-content ${
+                        message.userId === userData._id ? "sent" : "received"
+                      }`}
+                    >
+                      {message.content}
+                    </div>
                   </div>
-                </div>
-              ))
-            ) : (
-              <div className="chat-messages mt-5">
-                <h1 className="">Inicie uma Conversa</h1>
-              </div>
-            )}
+                ))
+              : null}
             <div ref={bottomRef} />
           </div>
           <Form className="chat-input">
