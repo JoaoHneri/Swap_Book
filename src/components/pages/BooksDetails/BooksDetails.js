@@ -132,7 +132,7 @@ const BookDetails = () => {
                       </h6>
                     </div>
                     <div className="text-2xl font-bold">
-                      <h6>Preço: R${response.price},00</h6>
+                      <h6>Preço: R${response.price}</h6>
                     </div>
                     <div className="text-2xl font-bold">
                       <h6>Estado do Livro: {response.state}</h6>

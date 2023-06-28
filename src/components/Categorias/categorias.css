@@ -103,3 +103,17 @@ box-shadow:  6px 6px 8px #c5c5c5,
   font-size: 22pt;
 }
 }
+
+@media (max-width: 680px) {
+  .cont_edit {
+    justify-content: center;
+  }
+
+  .icons_cartegory {
+    margin: 0.5rem;
+  }
+
+  .icons_cartegory:hover {
+    border: none;
+  }
+}

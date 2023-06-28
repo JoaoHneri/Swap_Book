@@ -236,7 +236,7 @@ const Home = () => {
           </Carousel.Item>
         ))}
       </Carousel>
-      <div  className="container btn-run-filter"><Link id="link-filter" to="/categorias"><div className="btn-run-filter2"><p>Veja mais</p><BsArrowRightShort id="icon-filter"/></div></Link></div>
+      <div  className="container btn-run-filter"><Link id="link-filter" to="/filter"><div className="btn-run-filter2"><p>Veja mais</p><BsArrowRightShort id="icon-filter"/></div></Link></div>
       <div className=" link_map">
         {userData.isLogged ? (
           <Link id="link-tx" to="/map_products">
