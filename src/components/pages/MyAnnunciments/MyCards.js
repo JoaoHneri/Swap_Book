@@ -68,10 +68,6 @@ const MyCards = ({ name, author, price, year, synopsis, _id, src, createdAt }) =
         <div className="book-info-row">
           <p className="book-info-ds">1</p>
           <p className="book-info">
-            <span className="span-txt">Ano: </span>
-            {year}
-          </p>
-          <p className="book-info">
             <span className="span-txt">Autor:</span> {author}
           </p>
         </div>
