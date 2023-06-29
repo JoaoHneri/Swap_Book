@@ -9,6 +9,8 @@ import Footer from "../../Footer/Footer";
 import InputMask from "react-input-mask";
 import ModalTroca from "../../Modal/ModalTroca";
 import ModalMapa from "../../Modal/ModalMapa";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 const UpdateBook = () => {
   const [userData, setUserData] = useContext(UserContext);
@@ -26,6 +28,7 @@ const UpdateBook = () => {
   });
   const navigate = useNavigate();
   const { _id } = useParams();
+  const MySwal = withReactContent(Swal);
 
   async function updateProductHandler(e) {
     e.preventDefault();
@@ -48,10 +51,18 @@ const UpdateBook = () => {
         { headers: { auth: `${userData._id}` } }
       );
 
-      alert("Produto atualizado com sucesso!");
+      MySwal.fire({
+        title: 'Sucesso',
+        text: 'Produto Atualizado com sucesso',
+        icon: 'success',
+        confirmButtonText: 'Ok',
+        didOpen: () => {
+          MySwal.stopTimer()
+        },
+      })
       navigate("/meus_anuncios");
     } catch (err) {
-      alert("Falha ao atualizar o Livro");
+      
     }
   }
 

@@ -57,7 +57,7 @@ function MyAnnuncements() {
               index % 2 === 0 && (
                 <Carousel.Item key={product._id}>
                   <div className="d-flex container edit-cards-my">
-                    <MyCards _id={product._id} name={product.name} author={product.author} src={product.src} price={product.price} year={productsData[index + 1].year} synopsis={product.synopsis}  createdAt={product.createdAt} />
+                    <MyCards _id={product._id} name={product.name} author={product.author} src={product.src} price={product.price} synopsis={product.synopsis}  createdAt={product.createdAt} />
                     {productsData[index + 1] && (
                       <MyCards _id={productsData[index + 1]._id} name={productsData[index + 1].name} author={productsData[index + 1].author} src={productsData[index + 1].src} price={productsData[index + 1].price} year={productsData[index + 1].year} synopsis={productsData[index + 1].synopsis} />
                     )}
