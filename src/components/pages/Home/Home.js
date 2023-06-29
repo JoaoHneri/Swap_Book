@@ -325,13 +325,12 @@ const Home = () => {
                 </Link>
               </div>
               <div className=" link_map">
-                {userData.isLogged ? (
+
                   <Link id="link-tx" to="/map_products">
                     <button className="btn_map link_map">
                       Veja no Mapa <GoLocation id="icon-map" />
                     </button>
                   </Link>
-                ) : null}
               </div>
             </div>
             <Footer />

@@ -40,29 +40,29 @@ function Categorias({setCategory}) {
     <div className="categories container">
       <h2 id="edit-h2-cat"><span>Categorias</span></h2>
     <div className="container cont_edit">
-      <div className="icons_cartegory text-center">
-        <AiFillHeart className='icon-cart' onClick={updateRomance}/> <p id="tx-color-icon">Romance</p>
+      <div className="icons_cartegory text- cursor-pointer" onClick={updateRomance}>
+        <AiFillHeart className='icon-cart' /> <p id="tx-color-icon">Romance</p>
       </div>
-      <div className="icons_cartegory text-center">
-          <GiPistolGun className='icon-cart' onClick={updateAction}/> <p id="tx-color-icon">Ação</p>
+      <div className="icons_cartegory text- cursor-pointer" onClick={updateAction}>
+          <GiPistolGun className='icon-cart' /> <p id="tx-color-icon">Ação</p>
       </div>
-      <div className="icons_cartegory text-center">
-        <GiMaterialsScience className='icon-cart' onClick={updateFiction}/> <p id="tx-color-icon">Ficção</p>
+      <div className="icons_cartegory text- cursor-pointer" onClick={updateFiction}>
+        <GiMaterialsScience className='icon-cart' /> <p id="tx-color-icon">Ficção</p>
       </div>
-      <div className="icons_cartegory text-center">
-        <RiSpyFill onClick={updateSuspense} className='icon-cart'/> <p id="tx-color-icon">Suspense</p>
+      <div className="icons_cartegory text- cursor-pointer" onClick={updateSuspense}>
+        <RiSpyFill className='icon-cart'/> <p id="tx-color-icon">Suspense</p>
       </div>
-      <div className="icons_cartegory text-center">
-        <MdHistoryToggleOff onClick={updateHistory} className='icon-cart'/> <p id="tx-color-icon">História</p>
+      <div className="icons_cartegory text- cursor-pointer" onClick={updateHistory}>
+        <MdHistoryToggleOff className='icon-cart'/> <p id="tx-color-icon">História</p>
       </div>
-      <div className="icons_cartegory text-center">
-        <BsFillPersonBadgeFill onClick={updateBibiografia} className='icon-cart'/> <p id="tx-color-icon">Biografia</p>
+      <div className="icons_cartegory text- cursor-pointer" onClick={updateBibiografia}>
+        <BsFillPersonBadgeFill className='icon-cart'/> <p id="tx-color-icon">Biografia</p>
       </div>
-      <div className="icons_cartegory text-center">
-        <GiScreaming className='icon-cart' onClick={updateTerror} /> <p id="tx-color-icon">Terror</p>
+      <div className="icons_cartegory text- cursor-pointer"  onClick={updateTerror}>
+        <GiScreaming className='icon-cart'/> <p id="tx-color-icon">Terror</p>
       </div>
-      <div className="icons_cartegory text-center">
-        <SiApachemaven className='icon-cart' onClick={updateFantasy} /> <p id="tx-color-icon">Fantasia</p>
+      <div className="icons_cartegory text- cursor-pointer" onClick={updateFantasy}>
+        <SiApachemaven className='icon-cart'/> <p id="tx-color-icon">Fantasia</p>
       </div>
     </div>
     </div>

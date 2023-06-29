@@ -64,17 +64,17 @@ const Footer = () => {
            Atendimento ao Usuário
           </h6>
           <p>
-            <a href="#!" class="text-reset">Sobre nós</a>
+            <a href="/filter" class="text-reset">Sobre nós</a>
           </p>
           <p>
-            <a href="#!" class="text-reset"><ModalTc/></a>
+            <a href="/filter" class="text-reset"><ModalTc/></a>
           </p>
           <p>
-            <a href="#!" class="text-reset"><ModalSup/> </a>
+            <a href="/filter" class="text-reset"><ModalSup/> </a>
           </p>
           <p>
             
-            <a href="#!" class="text-reset"><ModalPp/> </a>
+            <a href="/filter" class="text-reset"><ModalPp/> </a>
           </p>
         </div>
       </div>

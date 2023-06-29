@@ -87,7 +87,7 @@ const ChatNotify = () => {
                     </div>
                   ) : messages.length === 0 ? (
                     <div className="flex h-full items-center justify-center">
-                      <div className="col-not-anum">
+                      <div className="col-not-anum ">
                         <RiEmotionSadLine id="icon-not-anum" />
                         <p className="text-center">Você não possui chats ainda</p>
                       </div>
@@ -122,7 +122,7 @@ const ChatNotify = () => {
                   )}
                 </div>
               </div>
-              <div>
+              <div className="responsiveDimensions">
                 {selectedMessage ? (
                   <ChatNot
                     id={selectedMessage.idProduct}

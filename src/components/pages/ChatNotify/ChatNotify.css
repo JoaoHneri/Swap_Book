@@ -72,5 +72,9 @@
         margin: 0;
         height: 20px;
     }
+
+    .responsiveDimensions{
+      margin-top: 20vh;
+    }
     
 }

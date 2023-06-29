@@ -15,11 +15,14 @@ import { MdFavoriteBorder } from "react-icons/md";
 
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
+import Modal from "react-bootstrap/Modal";
 
 import "./Nav.css";
 
 function Navbar2({ setSearchProducts }) {
   const [userData, setUserData] = useContext(UserContext);
+  const [showModal, setShowModal] = useState(false);
+  const [AlertMsm, setAlertMsm] = useState("");
 
   const navigate = useNavigate();
 
@@ -38,6 +41,20 @@ function Navbar2({ setSearchProducts }) {
     navigate("/");
   }
 
+  const handleChatClick = () => {
+    if (userData.isLogged) {
+      // Redirecionar para a página do chat
+      navigate("/ChatNotifications");
+    } else {
+      // Mostrar o modal informando que é necessário estar logado
+      setShowModal(true);
+    }
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
       <Navbar className="fixed-top edit-nav-pr navbar" bg="light" expand="lg">
@@ -49,13 +66,7 @@ function Navbar2({ setSearchProducts }) {
             }}
             href="#"
           >
-            <img
-              src={logo}
-              id="img-logo"
-              height="60"
-              alt="Logo"
-              //onChange={(e) => setSearchProducts(e.target.value)}  placeholder="Pesquisar Livro"
-            />
+            <img src={logo} id="img-logo" height="60" alt="Logo" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll" className="justify-content-end">
@@ -82,14 +93,26 @@ function Navbar2({ setSearchProducts }) {
             </div>
 
             <Nav className="align-icons">
-              <Link to="/ChatNotifications" className="icon">
-                {" "}
-                <BsChatDots className="icon-size" />{" "}
-              </Link>
+              {userData.isLogged ? (
+                <Link to="/chatNotifications" className="icon">
+                  <BsChatDots className="icon-size" />
+                </Link>
+              ) : (
+                <Link className="icon" onClick={handleChatClick} onChange={(e => setAlertMsm('Chat'))}>
+                  <BsChatDots className="icon-size" />
+                </Link>
+              )}
 
-              <Link to="/favoritos" className="icon">
+              {userData.isLogged ? (
+                <Link to="/favoritos" className="icon">
                 <MdFavoriteBorder className="icon-size" />
               </Link>
+              ) : (
+                <Link className="icon" onClick={handleChatClick}>
+                  <MdFavoriteBorder className="icon-size" />
+                </Link>
+              )}
+              
               {userData.isLogged ? (
                 <Link to="/dashboard">
                   <Button className="btn_nav">Anunciar</Button>
@@ -145,12 +168,26 @@ function Navbar2({ setSearchProducts }) {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
+      <Modal show={showModal} onHide={closeModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Ferramenta indisponível</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          É necessário estar logado para utilizar essa ferramenta. Por favor, faça o
+          login ou crie uma conta.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={closeModal}>
+            Fechar
+          </Button>
+          <Link to="/login">
+            <Button variant="primary">Entrar</Button>
+          </Link>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }
 
 export default Navbar2;
-/*
-{userData.isLogged ? (
-  <Link ><AiOutlineLogout className="icon-size" id="logout" onClick={logoutHandler}/> </Link>
-  ) : null}*/
