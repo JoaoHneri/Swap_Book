@@ -3,6 +3,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { AiOutlineLogout } from "react-icons/ai";
 import { BsChatDots } from "react-icons/bs";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { RiMenu3Line } from "react-icons/ri";
 import logo from "../img/logo.png";
 import { Link } from "react-router-dom";
 import { UserContext } from "../UseContext/UserContext";
@@ -68,7 +69,8 @@ function Navbar2({ setSearchProducts }) {
           >
             <img src={logo} id="img-logo" height="60" alt="Logo" />
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarScroll" />
+          <Navbar.Toggle aria-controls="navbarScroll"> <RiMenu3Line id="icon-nav-edit"/></Navbar.Toggle>
+         
           <Navbar.Collapse id="navbarScroll" className="justify-content-end">
             <div class="container-input">
               <input
@@ -133,7 +135,7 @@ function Navbar2({ setSearchProducts }) {
                   <AiOutlineUser className="icon-size-drop" />{" "}
                   <Dropdown as={ButtonGroup}>
                     <Button id="btn-drop">
-                      Olá,&nbsp;
+                      Olá, 
                       {userData.isLogged ? (
                         <p className="edit-user-name">
                           {`${userData.name.split(" ")[0]}`}

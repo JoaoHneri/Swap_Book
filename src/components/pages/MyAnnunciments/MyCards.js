@@ -74,9 +74,6 @@ const MyCards = ({ name, author, price, year, synopsis, _id, src, createdAt }) =
           <p className="book-info">
             <span className="span-txt">Autor:</span> {author}
           </p>
-          <p className="book-info">
-            <span className="span-txt">Data:</span> {extractDate(createdAt)}
-          </p>
         </div>
       </div>
     </div>

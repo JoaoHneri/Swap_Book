@@ -8,12 +8,14 @@ import "./ChatNotify.css";
 import ChatNot from "../../Chat/ChatNot";
 import { RiEmotionSadLine } from "react-icons/ri";
 import ChatNotExample from "../../Chat/ChatNotExample";
+import LogoUserChat from "../../img/LogoUserChat.png"
 
 const ChatNotify = () => {
   const [userData, setUserData] = useContext(UserContext);
   const [messages, setMessages] = useState([]);
   const [selectedMessage, setSelectedMessage] = useState(null);
   const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     const fetchFormattedMessages = async () => {
@@ -102,7 +104,7 @@ const ChatNotify = () => {
                         <div className="flex items-center">
                           <img
                             className="h-10 w-10 rounded-full"
-                            src={`https://source.unsplash.com/random/${message._id}x${message._id}`}
+                            src={LogoUserChat}
                             alt="Avatar"
                           />
                           <div className="ml-4">

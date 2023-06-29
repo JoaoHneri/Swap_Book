@@ -126,6 +126,10 @@
     background-image: linear-gradient(to top, #48c6ef 0%, #66aff9 100%);
     transition: 2s;
   }
+   #icon-nav-edit{
+    color: #000000;
+    font-size: 22pt;
+  }
   @media (max-width: 600px) {
     .icon {
       flex-direction: row;

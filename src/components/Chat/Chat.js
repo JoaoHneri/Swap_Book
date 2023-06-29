@@ -142,7 +142,7 @@ export default function Chat() {
             ))
           ) : (
             <div className='chat-messages mt-5'>
-              <h1 className=''>Inicie uma Conversa</h1>
+              <h4 className=''>Inicie uma Conversa</h4>
             </div>
           )}
         </div>

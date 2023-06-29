@@ -8,6 +8,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import logoUser from '../../img/noUser.jpg';
+import logoUserChat from "../../img/LogoUserChat.png"
 
 const UserShow = () => {
   const [response, setResponse] = useState([]);
@@ -49,14 +50,14 @@ const UserShow = () => {
         <div className="flex flex-col items-center justify-center h-screen bg-gray-200 my-1 mb-10">
           <div className="max-w-6xl bg-white p-5 rounded-lg shadow-lg">
             <div className="flex flex-col sm:flex-row">
-              <div className="sm:w-1/3">
+              <div className="sm:w-1/1">
                 <img
-                  src={logoUser}
+                  src={logoUserChat}
                   alt="Book Cover"
                   className="w-full rounded-lg shadow-lg"
                 />
               </div>
-              <div className="sm:w-2/3 sm:pl-6 mt-4 sm:mt-0">
+              <div className="sm:w-2/3 sm:pl-6 mt-4 sm:mt-0 ml-10">
                 <h1 className="text-3xl font-bold mb-4">{response.name}</h1>
                 <p className="text-gray-800 text-lg font-medium mb-4">
                   {response.email}
