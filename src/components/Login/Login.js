@@ -35,7 +35,6 @@ const LoginPage = () => {
       localStorage.setItem("id", idGuard);
       localStorage.setItem("IsLogged", true);
       const userInfo = userData.data;
-      console.log(userInfo);
       setUserData((prevState) => ({
         ...prevState,
         isLogged: true,

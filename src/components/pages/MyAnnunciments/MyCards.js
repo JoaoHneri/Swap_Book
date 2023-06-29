@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./myCards.module.css";
 import api from "../../../Services/Api";
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import { UserContext } from "../../UseContext/UserContext";
 import { Link } from "react-router-dom";
 import { Dropdown, IconButton } from "rsuite";
@@ -30,6 +30,7 @@ const renderIconButton = (props, ref) => {
 
 const MyCards = ({ name, author, price, synopsis, _id, src, createdAt }) => {
   const [userData, setUserData] = useContext(UserContext);
+  const [showFullSynopsis, setShowFullSynopsis] = useState(false);
   const MySwal = withReactContent(Swal);
 
   async function deleteProduct() {
@@ -40,25 +41,24 @@ const MyCards = ({ name, author, price, synopsis, _id, src, createdAt }) => {
         },
       });
       MySwal.fire({
-        title: 'Sucesso',
-        text: 'Produto deletado com sucesso',
-        icon: 'success',
-        confirmButtonText: 'Ok',
+        title: "Sucesso",
+        text: "Produto deletado com sucesso",
+        icon: "success",
+        confirmButtonText: "Ok",
         didOpen: () => {
-          MySwal.stopTimer()
+          MySwal.stopTimer();
         },
-      })
+      });
     } catch (err) {
       MySwal.fire({
-        title: 'Erro ao deletar',
-        text: 'Verifique sua Rede',
-        icon: 'error',
-        confirmButtonText: 'Ok',
+        title: "Erro ao deletar",
+        text: "Verifique sua Rede",
+        icon: "error",
+        confirmButtonText: "Ok",
         didOpen: () => {
-         
-          MySwal.stopTimer()
+          MySwal.stopTimer();
         },
-      })
+      });
     }
   }
 
@@ -73,25 +73,12 @@ const MyCards = ({ name, author, price, synopsis, _id, src, createdAt }) => {
     return `${day}/${month}/${year}`;
   };
 
+  const toggleSynopsis = () => {
+    setShowFullSynopsis(!showFullSynopsis);
+  };
+
   return (
     <div className="card-anum">
-      <Dropdown
-        className="dropdown-annum"
-        title=""
-        renderToggle={renderIconButton}
-      >
-        <Dropdown.Item
-          id="drop-edit1"
-          icon={<TrashIcon id="icon-delete" />}
-          onClick={deleteProduct}
-        ></Dropdown.Item>
-        <Link to={`/editar_produto/${_id}`}>
-          <Dropdown.Item
-            id="drop-edit2"
-            icon={<EditIcon id="icon-edit" />}
-          ></Dropdown.Item>
-        </Link>
-      </Dropdown>
       <img
         src={`${process.env.REACT_APP_API}/${src}`}
         alt="Imagem do livro"
@@ -99,10 +86,31 @@ const MyCards = ({ name, author, price, synopsis, _id, src, createdAt }) => {
       />
       <div className="card-content d-flex flex-wrap">
         <h2 className="book-title">{name}</h2>
-        <p className="book-synopsis">{synopsis}</p>
-        <p className="book-sy">Postado na data: {createdAt} </p>         
+        <p className="book-synopsis">
+          <span id="sin-edit">Sinopse: </span>
+          {showFullSynopsis ? synopsis : `${synopsis.substring(0, 150)}...`}
+          <span
+            className="read-more"
+            onClick={toggleSynopsis}
+            style={{ cursor: "pointer" }}
+          >
+            {showFullSynopsis ? "Voltar" : "Ler Mais"}
+          </span>
+        </p>
+        <div className="info-card-aanum">
+          <div className="card-icons">
+            <TrashIcon
+              id="icon-delete"
+              className="card-icon cursor-pointer"
+              onClick={deleteProduct}
+            />
+            <Link to={`/editar_produto/${_id}`}>
+              <EditIcon id="icon-edit" className="card-icon" />
+            </Link>
+          </div>
+          <p className="book-sy">Postado na data: {createdAt} </p>
+        </div>
       </div>
-      
     </div>
   );
 };

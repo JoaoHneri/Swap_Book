@@ -1,6 +1,9 @@
-
-
-
+.card-icon{
+  color: #2586af;
+}
+#icon-delete{
+  color: #2586af;
+}
 .card-anum {
   position: relative;
   display: flex;
@@ -51,7 +54,9 @@
 .book-synopsis {
   margin-bottom: 12px;
 }
-
+.read-more{
+  color: #2586af;
+}
 .book-info-row {
   display: flex;
   flex-wrap: wrap;
@@ -213,7 +218,7 @@
   }
   .book-synopsis {
     margin-bottom: 12px;
-    font-size: 10px;
+    font-size: 13px;
   }
   .book-title {
     font-size: 10px;
@@ -228,7 +233,7 @@
     border-radius: 8px;
     overflow: hidden;
     width: 300px;
-    height: 260px;
+    height: 340px;
     margin: 20px;
     border: 1px solid #ccc;
   }
@@ -244,7 +249,7 @@
   }
   
 .book-title {
-  font-size: 18px;
+  font-size: 14pt;
   font-weight: bold;
   margin-bottom: 8px;
 }
@@ -259,6 +264,10 @@
   flex-direction: column;
   text-align: left;
   align-items: center;
+}
+.info-card-aanum{
+  display: flex;
+  flex-direction: column;
 }
 }
 
@@ -283,4 +292,15 @@
 }
 #tx-p-fav{
     color: #bebcbc;
+}
+.card-icons{
+  display: flex;
+
+}
+.info-card-aanum{
+  display: flex;
+}
+#sin-edit{
+
+  color: #000000;
 }
