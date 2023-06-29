@@ -24,7 +24,7 @@ function Categorias({setCategory}) {
     setCategory("Historia")
   }
   function updateBibiografia(){
-    setCategory("bibiografia")
+    setCategory("AutoBiografia")
   }
   function updateTerror(){
     setCategory("Terror")
