@@ -8,9 +8,9 @@ import { useParams } from "react-router-dom";
 import { UserContext } from "../UseContext/UserContext";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "./Chat.css";
-import Loader from "../loading/Loader";
 
-export default function Chat({ id, sender, receiver }) {
+
+export default function ChatNotExample({ id, sender, receiver }) {
   const [userData, setUserData] = useContext(UserContext);
   const bottomRef = useRef();
   const messageRef = useRef();
@@ -125,7 +125,7 @@ export default function Chat({ id, sender, receiver }) {
                     </div>
                   </div>
                 ))
-              : <Loader/>}
+              : null}
             <div ref={bottomRef} />
           </div>
           <Form className="chat-input">

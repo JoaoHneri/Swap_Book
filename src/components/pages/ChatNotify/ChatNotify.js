@@ -7,6 +7,7 @@ import Footer from "../../Footer/Footer";
 import "./ChatNotify.css";
 import ChatNot from "../../Chat/ChatNot";
 import { RiEmotionSadLine } from "react-icons/ri";
+import ChatNotExample from "../../Chat/ChatNotExample";
 
 const ChatNotify = () => {
   const [userData, setUserData] = useContext(UserContext);
@@ -130,7 +131,7 @@ const ChatNotify = () => {
                     key={selectedMessage._id}
                   />
                 ) : (
-                  <ChatNot />
+                  <ChatNotExample />
                 )}
               </div>
             </div>
