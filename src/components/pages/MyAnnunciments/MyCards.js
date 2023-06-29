@@ -26,7 +26,7 @@ const renderIconButton = (props, ref) => {
   );
 };
 
-const MyCards = ({ name, author, price, year, synopsis, _id, src, createdAt }) => {
+const MyCards = ({ name, author, price, synopsis, _id, src, createdAt }) => {
   const [userData, setUserData] = useContext(UserContext);
 
   async function deleteProduct() {
@@ -68,7 +68,14 @@ const MyCards = ({ name, author, price, year, synopsis, _id, src, createdAt }) =
         <div className="book-info-row">
           <p className="book-info-ds">1</p>
           <p className="book-info">
+            <span className="span-txt">Ano: </span>
+            {price}
+          </p>
+          <p className="book-info">
             <span className="span-txt">Autor:</span> {author}
+          </p>
+          <p className="book-info">
+            <span className="span-txt">Data:</span> {extractDate(createdAt)}
           </p>
         </div>
       </div>
