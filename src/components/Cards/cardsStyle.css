@@ -72,6 +72,12 @@ a
 #author-edit{
 color: #363636;
 font-size: 10pt;
+text-decoration: none;
+transition: 0.3s;
+max-height: 3.6em; 
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
 }
 .product-catagory {
     display: block;
@@ -165,10 +171,10 @@ font-size: 10pt;
 }
 .product-card {
   /*#008ECC*/
-  width: 185px;
+  width: 160px;
   position: relative;
   margin: 50px auto;
-  height: 400px;
+  height: 380px;
   border-radius: 20px;
   border-radius: 20px;
   background: #fffdfd;
@@ -178,18 +184,63 @@ font-size: 10pt;
 
 }
 
+.product-price {
+    font-size: 15px;
+    color: #008ECC;
+    font-weight: 800;
+    text-align: left;
 }
+
+#icon-info{
+font-size: 13pt;
+}
+#icon-troca{
+    color: #008ECC;
+    font-size: 20pt;
+}
+
 #icon-fav-1{
     color: #02B2FF;
-    
+    font-size: 13pt;
     margin-left: 2px;
 }
 #icon-fav-2{
     margin-left: 2px;
     color: #008ECC;
+    font-size: 13pt;
 }
 #icon-fav-2:hover{
     transform: scale(1.2);
     transition: 1s;
     
 }
+#author-edit{
+    color: #363636;
+    font-size: 9pt;
+    }
+
+    .product-catagory {
+        display: block;
+        font-size: 12px;
+        font-weight: 700;
+        text-align: left;
+        text-transform: uppercase;
+        color: #ccc;
+        margin-bottom: 5px;
+    }
+}
+
+
+
+
+#icon-fav-2{
+    margin-left: 2px;
+    color: #008ECC;
+
+}
+#icon-fav-2:hover{
+    transform: scale(1.2);
+    transition: 1s;
+    
+}
+

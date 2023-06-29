@@ -147,33 +147,29 @@
   box-shadow: #D6D6E7 0 3px 7px inset;
   transform: translateY(2px);
 }
-
 @media (max-width: 600px) {
-  .col-login {
-    display: none;
+  .col-login1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
   }
+
+  .col-login2 {
+    flex-direction: column;
+  }
+
   #img-lg-mb {
     display: none;
   }
 
-  .cont-centrer {
+  .col-login3 {
     display: flex;
-    
-
-  }
-  
-  .col-login1 {
-    border: none;
-    background-color: #0093E9;
-    background-image: linear-gradient(90deg, #0093E9 0%, #80D0C7 100%);
-    display: flex;
-    border-radius: 0px;
+    justify-content: center;
     align-items: center;
-    box-shadow: 33px 33px 89px #777777, -33px -33px 89px #ffffff;
-    height: 100%;
   }
-  
 }
+
 
 .isis {
   text-decoration: none;
